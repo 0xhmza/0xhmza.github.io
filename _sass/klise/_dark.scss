@@ -123,6 +123,10 @@ body[data-theme="dark"] {
   // Navbar
   .navbar {
     border-color: $dark-light;
+    background: rgba($dark-black, 0.88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba($dark-light, 0.12);
     .menu {
       a#mode {
         .mode-sunny {
@@ -137,8 +141,11 @@ body[data-theme="dark"] {
         color: $dark-white;
       }
       @include media-query($on-mobile) {
-        background-color: $dark-black;
+        background-color: rgba($dark-black, 0.9);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
         border-color: $dark-light;
+        box-shadow: 0 8px 24px rgba($dark-light, 0.14);
 
         .menu-icon {
           > svg {
@@ -147,7 +154,9 @@ body[data-theme="dark"] {
         }
 
         input[type="checkbox"]:checked ~ .trigger {
-          background: $dark-black;
+          background: rgba($dark-black, 0.94);
+          -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
         }
       }
     }
