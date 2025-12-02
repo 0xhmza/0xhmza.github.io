@@ -13,5 +13,5 @@ I am a cybersecurity student at RUB (Ruhr University Bochum), based in Bochum, G
 
 Feel free to reach out if you have questions, want to collaborate, or just want to say hi :)
 
-- Email: `{{ TBD }}`  
+- Email: `TBD`  
 - GitHub: `github.com/0xhmza`  
