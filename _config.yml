@@ -72,18 +72,11 @@ include:
   - .htaccess
 
 exclude:
-  - CNAME
   - Gemfile
   - Gemfile.lock
   - LICENSE
-  - CHANGELOG.md
   - README.md
   - node_modules
-  - CODE_OF_CONDUCT.md
-  - CONTRIBUTING.md
-  - lighthouse.png
-  - klise-*.gem
-  - klise.gemspec
 
 # Plugins
 plugins:
