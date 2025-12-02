@@ -1,18 +1,17 @@
 ---
-title: Colophon
+title: preamble
 permalink: /about/
 layout: page
-excerpt: Hello peeps, I'm student of computer science from Banyuwangi, living in Jogjakarta. This blog for documentation about my programming journey, running on jekyll, hosting on netlify and using my own simple theme.
+excerpt: Hamza's personal blog.
 comments: false
 ---
 
-He's a student from Banyuwangi, living in Jogjakarta. the blog for documentation about his programming 🎒 journey, running on jekyll, hosting on [now.sh](http://now.sh) and using his own theme, he name it <a href="https://github.com/piharpi/jekyll-klise" target="_blank" rel="noopener">klisé</a>, he also loves to learning web technology; but he often forgot, that a reason why him doing the writing.
+I am a cybersecurity student at RUB (Ruhr University Bochum), based in Bochum, Germany. Currently, I work as a **System Administrator** in part time while diving deep into security, networks, and different technologies. This blog documents my learning journey, experiments, and day-to-day projects around cybersecurity, system administration, and development — all running on Jekyll and hosted on GitHub Pages.
 
-If you have a question about him or else, just send a letter to him.
+---
+## Contact & Contributions
 
-You can [report](http://github.com/piharpi/jekyll-klise/issues/new) if there is an broken link(s) or somethings else.
+Feel free to reach out if you have questions, want to collaborate, or just want to say hi :)
 
-**may u needs ✨**
-
-- {{ site.author.email }}
-- github.com/{{ site.author.github }}
+- Email: `{{ TBD }}`  
+- GitHub: `github.com/0xhmza`  

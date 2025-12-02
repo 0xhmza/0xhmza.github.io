@@ -1,13 +1,20 @@
 ---
-title: Acknowledgment
+title: Thanks
 permalink: /thanks/
 layout: page
-excerpt: Thanks to amazing people that i met, who help me out from follishness, connecting me with another good person, giving some advice when i'm at a bad things, pulling me from ordinary to be great.
+excerpt: Big thanks to everyone who helped me grow.
 comments: false
 ---
 
-Thanks to amazing people that i met, who help me out from follishness, connecting me with another good person, giving some advice when i'm at a bad things, pulling me from ordinary to be great.
+### Acknowledgment. 
 
-<hr>
+To the friends, mentors and collaborators who  
+- saved me from mistakes,  
+- connected me with good people,  
+- gave advice when I was down,  
+- pushed me to level up —  
 
-Hopefully the knowledge that I got from them can be useful, and become a charity for them, Aamiin.
+You helped me grow from ordinary to something better.  
+
+I hope my progress can help someone else.
+Ameen.
