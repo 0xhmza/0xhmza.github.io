@@ -31,6 +31,9 @@ fb_appid:
 collections:
   posts:
     output: true
+  projects:
+    output: true
+    permalink: /projects/:name/
 
 # Markdown settings
 markdown: kramdown
@@ -42,8 +45,15 @@ kramdown:
 defaults:
   - scope:
       path: ""
+      type: "posts"
     values:
       layout: post
+      comments: false
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: project
       comments: false
 
 # Jekyll Compose default front matter

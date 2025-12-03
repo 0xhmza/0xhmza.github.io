@@ -3,18 +3,36 @@
   height: auto;
   max-width: calc(#{$wide-size} - (#{$spacing-full} * 2));
   max-width: -webkit-calc(#{$wide-size} - (#{$spacing-full} * 2));
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 9;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - (#{$spacing-full} * 2));
   margin-right: auto;
   margin-left: auto;
-  border-bottom: 1px solid $light;
-  background: rgba($white, 0.85);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px rgba($black, 0.06);
+  border: 0;
   padding: $spacing-full - 15px $spacing-full;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: none;
+  z-index: 100;
   @extend %clearfix;
+
+  @include media-query($on-mobile) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    padding-left: $spacing-half;
+  padding-right: $spacing-half;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  }
 }
 
 // Navigation
@@ -83,7 +101,7 @@
     line-height: $base-line-height + 0.4;
     text-decoration: none;
     padding: 5px 8px;
-    opacity: 0.7;
+    opacity: 0.8;
     letter-spacing: 0.3px;
 
     &:hover {
@@ -117,16 +135,16 @@
     right: 0;
     z-index: 2;
     text-align: center;
-    height: 50px;
-    background-color: rgba($white, 0.9);
-    -webkit-backdrop-filter: blur(12px);
+    height: 54px;
+    background: transparent;
+    border-bottom: 0;
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid $light;
-    box-shadow: 0 8px 24px rgba($black, 0.08);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: none;
 
     a#mode {
       left: 10px;
-      top: 12px;
+      top: 14px;
     }
 
     .menu-icon {
@@ -143,7 +161,7 @@
       z-index: 1;
       > svg {
         fill: $black;
-        opacity: 0.7;
+        opacity: 0.9;
       }
       &:hover {
         > svg {
@@ -181,12 +199,141 @@
       display: block;
       box-sizing: border-box;
       font-size: 1.1em;
+      color: $black;
 
       &:not(:last-child) {
         margin: 0;
         padding: 2px 0;
       }
     }
+  }
+}
+
+.projects-view {
+  --project-card-bg: rgba(255, 255, 255, 0.12);
+  --project-card-border: rgba(0, 0, 0, 0.08);
+  --project-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+  --project-text: $black;
+}
+
+.projects-page {
+  padding-top: 220px;
+  padding-bottom: 60px;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 30px;
+
+  .projects-subtitle {
+    margin-top: 10px;
+    opacity: 0.8;
+    font-size: $medium-font-size;
+    color: $black;
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.project-card {
+  background: var(--project-card-bg);
+  border: 1px solid var(--project-card-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--project-card-shadow);
+  transition: box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.project-card__link {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card__media {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.project-card__placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.14));
+}
+
+.project-card__body {
+  padding: 8px 12px 10px;
+  color: var(--project-text);
+}
+
+.project-card__title {
+  margin: 0 0 3px 0;
+  font-size: $base-font-size + 0.5;
+}
+
+.project-card__desc {
+  margin: 0 0 6px 0;
+  font-size: $small-font-size;
+  opacity: 0.85;
+}
+
+.project-card__meta {
+  margin: 0;
+  font-size: $small-font-size - 1;
+  font-weight: 300;
+  opacity: 0.82;
+}
+
+.project-detail {
+  padding-top: 110px;
+
+  .project-detail__header {
+    margin-bottom: 25px;
+  }
+
+  .project-detail__media {
+    width: 100%;
+    max-height: 420px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    margin-bottom: 18px;
+    background: rgba(0, 0, 0, 0.03);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .project-detail__titleblock {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .project-detail__meta {
+    margin: 0;
+    font-size: $small-font-size;
+    color: $gray;
   }
 }
 
