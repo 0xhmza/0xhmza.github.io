@@ -349,10 +349,14 @@ table {
   clear: both;
 }
 
-// When mouse block a text set this color
-mark,
-::selection {
+// Highlight & selection
+mark {
   background: #fffba0;
+  color: $black;
+}
+
+::selection {
+  background: rgba(0, 0, 0, 0.08);
   color: $black;
 }
 

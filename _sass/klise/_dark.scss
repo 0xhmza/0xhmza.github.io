@@ -122,11 +122,19 @@ body[data-theme="dark"] {
 
   // Navbar
   .navbar {
-    border-color: $dark-light;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
     .menu {
       a#mode {
         .mode-sunny {
           display: block;
+          line {
+            stroke: $dark-white;
+          }
+          circle {
+            stroke: $dark-white;
+          }
         }
         .mode-moon {
           display: none;
@@ -137,8 +145,8 @@ body[data-theme="dark"] {
         color: $dark-white;
       }
       @include media-query($on-mobile) {
-        background-color: $dark-black;
-        border-color: $dark-light;
+        background-color: rgba(0, 0, 0, 0.92);
+        border-color: rgba(255, 255, 255, 0.12);
 
         .menu-icon {
           > svg {
@@ -147,7 +155,7 @@ body[data-theme="dark"] {
         }
 
         input[type="checkbox"]:checked ~ .trigger {
-          background: $dark-black;
+          background: rgba(0, 0, 0, 0.92);
         }
       }
     }
@@ -243,5 +251,40 @@ body[data-theme="dark"] {
         color: rgba(128,128,128,0.8);
       }
     }
+  }
+
+  .projects-view {
+    --project-card-bg: rgba(0, 0, 0, 0.35);
+    --project-card-border: rgba(255, 255, 255, 0.08);
+    --project-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    --project-text: $dark-white;
+  }
+
+  .projects-header .projects-subtitle {
+    color: $dark-white;
+  }
+
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+  }
+
+  .project-card__meta {
+    color: rgba(234, 234, 234, 0.75);
+  }
+
+  .project-detail {
+    .project-detail__media {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .project-detail__meta {
+      color: $dark-gray;
+    }
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.15);
+    color: $dark-white;
   }
 }
