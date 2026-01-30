@@ -31,11 +31,7 @@ layout: compress
   <div class="wrapper">
     <article class="project-detail">
       <header class="project-detail__header">
-        {% if page.image %}
-          <div class="project-detail__media">
-            <img src="{{ page.image }}" alt="{{ page.title | escape }}" loading="lazy" />
-          </div>
-        {% endif %}
+        <div class="project-detail__media js-gradient" data-gradient="{{ page.gradient | join: ',' }}"></div>
         <div class="project-detail__titleblock">
           <h1 class="header-title">{{ page.title | escape }}</h1>
           <p class="project-detail__meta">{{ page.date | date: "%b %d, %Y" }}</p>
