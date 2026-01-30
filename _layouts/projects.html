@@ -44,20 +44,19 @@ layout: compress
         {% for project in sorted_projects %}
           <article class="project-card">
             <a class="project-card__link" href="{{ project.url | relative_url }}">
-              <div class="project-card__media">
-                {% if project.image %}
-                  <img src="{{ project.image }}" alt="{{ project.title | escape }}" loading="lazy" />
-                {% else %}
-                  <div class="project-card__placeholder"></div>
-                {% endif %}
-              </div>
-              <div class="project-card__body">
-                <h2 class="project-card__title">{{ project.title }}</h2>
-                {% if project.description %}
+              <div
+                class="project-card__media project-cover"
+                data-title="{{ project.title | escape }}"
+                data-date="{{ project.date | date: "%b %d, %Y" }}"
+              ></div>
+              <span class="sr-only">
+                {{ project.title | escape }} {{ project.date | date: "%b %d, %Y" }}
+              </span>
+              {% if project.description %}
+                <div class="project-card__body">
                   <p class="project-card__desc">{{ project.description }}</p>
-                {% endif %}
-                <p class="project-card__meta">{{ project.date | date: "%b %d, %Y" }}</p>
-              </div>
+                </div>
+              {% endif %}
             </a>
           </article>
         {% endfor %}
@@ -65,6 +64,7 @@ layout: compress
     </main>
     {% include footer.html %}
   </div>
+  <script src="/assets/js/project-covers.js" defer></script>
 </body>
 
 </html>

@@ -239,6 +239,18 @@
   gap: 22px;
 }
 
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .project-card {
   background: var(--project-card-bg);
   border: 1px solid var(--project-card-border);
@@ -256,18 +268,63 @@
   height: 100%;
 }
 
-.project-card__media {
+.project-cover {
   position: relative;
   width: 100%;
-  height: 180px;
   overflow: hidden;
+  aspect-ratio: 24 / 5;
+  background: var(--cover-bg, #050505);
+  color: $white;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.project-cover__art {
+  position: absolute;
+  inset: 0;
+}
+
+.project-cover__shapes {
+  position: absolute;
+  inset: -20%;
+  filter: blur(var(--cover-blur, 26px));
+}
+
+.project-cover__shape {
+  position: absolute;
+  background: #2d3436;
+}
+
+.project-cover__mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, var(--cover-mask, 0.5));
+}
+
+.project-cover__text {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 6%;
+}
+
+.project-cover__title {
+  font-size: clamp(1rem, 2.4vw, 1.6rem);
+  font-weight: $bold-weight;
+  letter-spacing: 0.02em;
+}
+
+.project-cover__date {
+  margin-top: 4px;
+  font-size: clamp(0.6rem, 1.2vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.project-card__media {
+  position: relative;
 }
 
 .project-card__placeholder {
@@ -308,19 +365,17 @@
 
   .project-detail__media {
     width: 100%;
-    max-height: 420px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 6px;
     margin-bottom: 18px;
-    background: rgba(0, 0, 0, 0.03);
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+  .project-detail__header .project-cover {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    border-radius: 0;
   }
 
   .project-detail__titleblock {

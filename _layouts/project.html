@@ -31,15 +31,13 @@ layout: compress
   <div class="wrapper">
     <article class="project-detail">
       <header class="project-detail__header">
-        {% if page.image %}
-          <div class="project-detail__media">
-            <img src="{{ page.image }}" alt="{{ page.title | escape }}" loading="lazy" />
-          </div>
-        {% endif %}
-        <div class="project-detail__titleblock">
-          <h1 class="header-title">{{ page.title | escape }}</h1>
-          <p class="project-detail__meta">{{ page.date | date: "%b %d, %Y" }}</p>
-        </div>
+        <div
+          class="project-detail__media project-cover"
+          data-title="{{ page.title | escape }}"
+          data-date="{{ page.date | date: "%b %d, %Y" }}"
+        ></div>
+        <h1 class="sr-only">{{ page.title | escape }}</h1>
+        <p class="sr-only">{{ page.date | date: "%b %d, %Y" }}</p>
       </header>
       <main class="page-content project-detail__content" aria-label="Content">
         {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=2 h_max=4 %}
@@ -47,6 +45,7 @@ layout: compress
     </article>
     {% include footer.html %}
   </div>
+  <script src="/assets/js/project-covers.js" defer></script>
 </body>
 
 </html>
