@@ -277,9 +277,16 @@
   color: $white;
 }
 
+.project-card .project-cover {
+  aspect-ratio: 24 / 15;
+}
+
 .project-cover__art {
   position: absolute;
   inset: 0;
+  background: var(--cover-gradient, var(--cover-bg, #050505));
+  background-size: cover;
+  background-position: center;
 }
 
 .project-cover__shapes {

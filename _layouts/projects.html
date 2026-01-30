@@ -48,6 +48,8 @@ layout: compress
                 class="project-card__media project-cover"
                 data-title="{{ project.title | escape }}"
                 data-date="{{ project.date | date: "%b %d, %Y" }}"
+                data-gradient-dark="{{ project.gradient_dark | join: ", " }}"
+                data-gradient-light="{{ project.gradient_light | join: ", " }}"
               ></div>
               <span class="sr-only">
                 {{ project.title | escape }} {{ project.date | date: "%b %d, %Y" }}

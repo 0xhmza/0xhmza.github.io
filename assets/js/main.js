@@ -94,16 +94,80 @@
     });
   };
 
+  const getMermaidThemeConfig = () => {
+    const isDark = body.getAttribute("data-theme") === "dark";
+    const themeVariables = isDark
+      ? {
+          background: "transparent",
+          primaryColor: "#0f1620",
+          primaryBorderColor: "#2b3542",
+          primaryTextColor: "#e6edf3",
+          lineColor: "#6c7684",
+          secondaryColor: "#121b25",
+          tertiaryColor: "#0c121a",
+          textColor: "#e6edf3",
+          clusterBkg: "#0f1620",
+          clusterBorder: "#2b3542",
+          edgeLabelBackground: "#0b1016",
+          fontFamily: "inherit",
+        }
+      : {
+          background: "transparent",
+          primaryColor: "#f6f8fb",
+          primaryBorderColor: "#cfd7e3",
+          primaryTextColor: "#1f2933",
+          lineColor: "#56616f",
+          secondaryColor: "#eef2f7",
+          tertiaryColor: "#e4e9f1",
+          textColor: "#1f2933",
+          clusterBkg: "#f3f6fb",
+          clusterBorder: "#cfd7e3",
+          edgeLabelBackground: "#ffffff",
+          fontFamily: "inherit",
+        };
+
+    return {
+      theme: "base",
+      themeVariables,
+    };
+  };
+
+  const renderMermaid = () => {
+    if (!window.mermaid) return;
+    const nodes = document.querySelectorAll(".mermaid");
+    if (!nodes.length) return;
+
+    nodes.forEach((node) => {
+      const source = node.dataset.source || node.textContent;
+      if (!source) return;
+      node.dataset.source = source;
+      node.removeAttribute("data-processed");
+      node.innerHTML = "";
+      node.textContent = source;
+    });
+
+    window.mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "loose",
+      flowchart: {
+        padding: 15,
+      },
+      ...getMermaidThemeConfig(),
+    });
+    window.mermaid.run({ nodes });
+  };
+
   const initMermaid = () => {
     if (!window.mermaid) return;
     const codeBlocks = document.querySelectorAll("pre > code.language-mermaid");
-    if (!codeBlocks.length) return;
+    if (!codeBlocks.length && !document.querySelector(".mermaid")) return;
 
     codeBlocks.forEach((code) => {
       const pre = code.parentElement;
       const wrapper = pre && pre.parentElement;
       const container = document.createElement("div");
       container.className = "mermaid";
+      container.dataset.source = code.textContent;
       container.textContent = code.textContent;
 
       if (wrapper && wrapper.classList.contains("highlight")) {
@@ -113,13 +177,23 @@
       }
     });
 
-    window.mermaid.initialize({
-      startOnLoad: false,
-      securityLevel: "loose",
+    renderMermaid();
+  };
+
+  const observeMermaidTheme = () => {
+    if (!body || !window.MutationObserver) return;
+    let currentTheme = body.getAttribute("data-theme");
+    const observer = new MutationObserver(() => {
+      const nextTheme = body.getAttribute("data-theme");
+      if (nextTheme !== currentTheme) {
+        currentTheme = nextTheme;
+        renderMermaid();
+      }
     });
-    window.mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+    observer.observe(body, { attributes: true, attributeFilter: ["data-theme"] });
   };
 
   applyGradients();
   initMermaid();
+  observeMermaidTheme();
 })();

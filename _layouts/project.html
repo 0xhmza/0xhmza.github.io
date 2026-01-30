@@ -35,6 +35,8 @@ layout: compress
           class="project-detail__media project-cover"
           data-title="{{ page.title | escape }}"
           data-date="{{ page.date | date: "%b %d, %Y" }}"
+          data-gradient-dark="{{ page.gradient_dark | join: ", " }}"
+          data-gradient-light="{{ page.gradient_light | join: ", " }}"
         ></div>
         <h1 class="sr-only">{{ page.title | escape }}</h1>
         <p class="sr-only">{{ page.date | date: "%b %d, %Y" }}</p>
