@@ -12,7 +12,14 @@ gradient_light:
   - "#9fcbd5"
 ---
 
-# ProfileDoktor
+# ProfileDoktor 
+<a href="https://github.com/0xhmza/Profile-Doktor"
+   style="font-family:'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+          font-weight:200; font-size:0.85rem; color:#8a8f98; text-decoration:none;">
+   <span style="text-decoration:underline; text-underline-offset:2px; text-decoration-color:#c9cdd3;">
+    Repository: github.com/0xhmza/Profile-Doktor
+  </span>
+</a>
 
 **ProfileDoktor** is a **PowerShell 5.1+** auditing tool for Windows user profiles that helps administrators triage *roaming-profile–adjacent* problems (slow sign‑in/sign‑out, temporary profiles, profile copy failures, and profile state drift) by consolidating the most relevant evidence into a single **HTML report**.
 
@@ -44,9 +51,29 @@ Microsoft’s current overview describes the core model as:
 - when the user signs out, the local copy **merges back** to the server copy.[^ms-rup-overview]
 
 ```mermaid
-flowchart TB
-  Server["Profile share (SMB)"] -->|Sign-in: load/merge| Local["Local profile: C:\Users\<User>"]
-  Local -->|Sign-out: merge back| Server
+sequenceDiagram
+  autonumber
+  participant U as User
+  participant C as Windows Client
+  participant DC as Logon Server / Domain Controller
+  participant FS as Profile File Server (SMB)\\\FS01\Profiles$
+
+  Note over U,C: Logon (Roaming profile load)
+  U->>C: Enter credentials
+  C->>DC: Authenticate (Kerberos/NTLM)
+  DC-->>C: Auth OK + profile path (\\FS01\Profiles$\%username%)
+  C->>FS: SMB connect + access check
+  FS-->>C: Profile data (NTUSER.DAT, AppData, etc.)
+  C->>C: Load/merge into local cache (C:\Users\<User>)
+  Note over C: User session starts
+
+  Note over U,C: Logoff (Roaming profile sync back)
+  U->>C: Sign out
+  C->>C: Flush user hive + close handles
+  C->>FS: Sync/merge changes back to profile share
+  FS-->>C: Write OK
+  C-->>DC: Logoff / session end (optional)
+  Note over C: Session ends
 ```
 
 ### Cached profiles and slow link detection
