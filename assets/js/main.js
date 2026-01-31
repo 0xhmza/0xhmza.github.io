@@ -132,6 +132,133 @@
     };
   };
 
+  let activeMermaidNode = null;
+  let activeMermaidReturn = null;
+  let mermaidOverlayNode = null;
+
+  const closeMermaidOverlay = () => {
+    if (!mermaidOverlayNode) return;
+    mermaidOverlayNode.classList.remove("is-open");
+    mermaidOverlayNode.setAttribute("aria-hidden", "true");
+    body.classList.remove("mermaid-modal-open");
+
+    if (activeMermaidNode && activeMermaidReturn && activeMermaidReturn.wrapper) {
+      const { wrapper, nextSibling } = activeMermaidReturn;
+      if (nextSibling && nextSibling.parentElement === wrapper) {
+        wrapper.insertBefore(activeMermaidNode, nextSibling);
+      } else {
+        wrapper.appendChild(activeMermaidNode);
+      }
+    }
+
+    const content = mermaidOverlayNode.querySelector(".mermaid-overlay__content");
+    if (content) content.innerHTML = "";
+
+    activeMermaidNode = null;
+    activeMermaidReturn = null;
+  };
+
+  const getMermaidOverlay = () => {
+    if (mermaidOverlayNode) return mermaidOverlayNode;
+
+    const overlay = document.createElement("div");
+    overlay.className = "mermaid-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.innerHTML = `
+      <div class="mermaid-overlay__card" role="document">
+        <button type="button" class="mermaid-overlay__close" aria-label="Close fullscreen diagram">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="mermaid-overlay__content"></div>
+      </div>
+    `;
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) closeMermaidOverlay();
+    });
+
+    const closeButton = overlay.querySelector(".mermaid-overlay__close");
+    if (closeButton) {
+      closeButton.addEventListener("click", closeMermaidOverlay);
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && overlay.classList.contains("is-open")) {
+        closeMermaidOverlay();
+      }
+    });
+
+    document.body.appendChild(overlay);
+    mermaidOverlayNode = overlay;
+    return overlay;
+  };
+
+  const openMermaidOverlay = (wrapper) => {
+    if (!wrapper) return;
+    const diagram = wrapper.querySelector(".mermaid");
+    if (!diagram) return;
+
+    if (activeMermaidNode) closeMermaidOverlay();
+
+    const overlay = getMermaidOverlay();
+    const content = overlay.querySelector(".mermaid-overlay__content");
+    if (!content) return;
+
+    activeMermaidNode = diagram;
+    activeMermaidReturn = {
+      wrapper,
+      nextSibling: diagram.nextSibling,
+    };
+
+    content.innerHTML = "";
+    content.appendChild(diagram);
+
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    body.classList.add("mermaid-modal-open");
+
+    const closeButton = overlay.querySelector(".mermaid-overlay__close");
+    if (closeButton) closeButton.focus();
+  };
+
+  const ensureMermaidControls = () => {
+    const nodes = document.querySelectorAll(".mermaid");
+    if (!nodes.length) return;
+
+    nodes.forEach((node) => {
+      if (node.closest(".mermaid-overlay")) return;
+
+      const existingWrapper = node.closest(".mermaid-wrap");
+      const wrapper = existingWrapper || (() => {
+        const parent = node.parentElement;
+        if (!parent) return null;
+        const newWrapper = document.createElement("div");
+        newWrapper.className = "mermaid-wrap";
+        parent.insertBefore(newWrapper, node);
+        newWrapper.appendChild(node);
+        return newWrapper;
+      })();
+
+      if (!wrapper || wrapper.querySelector(".mermaid-fullscreen-btn")) return;
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "mermaid-fullscreen-btn";
+      button.setAttribute("aria-label", "View diagram fullscreen");
+      button.innerHTML =
+        '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openMermaidOverlay(wrapper);
+      });
+
+      wrapper.appendChild(button);
+    });
+  };
+
   const renderMermaid = () => {
     if (!window.mermaid) return;
     const nodes = document.querySelectorAll(".mermaid");
@@ -154,7 +281,12 @@
       },
       ...getMermaidThemeConfig(),
     });
-    window.mermaid.run({ nodes });
+    const result = window.mermaid.run({ nodes });
+    if (result && typeof result.then === "function") {
+      result.then(() => ensureMermaidControls());
+    } else {
+      ensureMermaidControls();
+    }
   };
 
   const initMermaid = () => {
