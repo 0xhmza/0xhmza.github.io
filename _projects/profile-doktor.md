@@ -57,7 +57,7 @@ This is a common reason why two sessions can behave differently even for the sam
 
 ### Profile versioning and OS upgrades
 
-Roaming profile formats differ across Windows releases. Microsoft documents that when a user signs in on a Windows version that uses a different profile version, they can receive a **new empty roaming profile**, and there is **no supported method** to migrate roaming user profiles between profile versions.[^ms-deploy-rup]
+Roaming profile formats differ across Windows releases. Microsoft documents that when a user signs in on a Windows version that uses a different profile version, they can receive a **new empty roaming profile**, and there is **no supported method** to migrate roaming user profiles between profile versions.
 
 ---
 
