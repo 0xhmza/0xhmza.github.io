@@ -2,20 +2,11 @@
 title: ProfileDoktor
 date: 2026-01-07
 description: A PowerShell solution to audit Windows user profiles for roaming-profile–related issues and reduce repetitive administrative work.
-gradient_dark:
-  - "#0f2027"
-  - "#203a43"
-  - "#2c5364"
-gradient_light:
-  - "#e2f3f4"
-  - "#c3e1e6"
-  - "#9fcbd5"
 ---
 
-# ProfileDoktor 
 <a href="https://github.com/0xhmza/Profile-Doktor"
    style="font-family:'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-          font-weight:200; font-size:0.85rem; color:#8a8f98; text-decoration:none;">
+          font-weight:200; font-size:0.85rem; text-decoration:none;">
    <span style="text-decoration:underline; text-underline-offset:2px; text-decoration-color:#c9cdd3;">
     Repository: github.com/0xhmza/Profile-Doktor
   </span>

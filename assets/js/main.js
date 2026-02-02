@@ -136,11 +136,47 @@
   let activeMermaidReturn = null;
   let mermaidOverlayNode = null;
 
+  const scaleMermaidOverlay = () => {
+    if (!mermaidOverlayNode || !mermaidOverlayNode.classList.contains("is-open")) {
+      return;
+    }
+    const content = mermaidOverlayNode.querySelector(".mermaid-overlay__content");
+    if (!content) return;
+    const svg = content.querySelector("svg");
+    if (!svg) return;
+
+    svg.style.transform = "";
+    svg.style.transformOrigin = "center center";
+
+    const contentRect = content.getBoundingClientRect();
+    const svgRect = svg.getBoundingClientRect();
+    if (!contentRect.width || !contentRect.height || !svgRect.width || !svgRect.height) {
+      return;
+    }
+
+    const targetWidth = contentRect.width;
+    const targetHeight = contentRect.height;
+    const scale = Math.min(targetWidth / svgRect.width, targetHeight / svgRect.height);
+    if (Number.isFinite(scale) && scale > 0) {
+      svg.style.transform = `scale(${scale})`;
+    }
+  };
+
+  const resetMermaidOverlayScale = () => {
+    if (!activeMermaidNode) return;
+    const svg = activeMermaidNode.querySelector("svg");
+    if (!svg) return;
+    svg.style.transform = "";
+    svg.style.transformOrigin = "";
+  };
+
   const closeMermaidOverlay = () => {
     if (!mermaidOverlayNode) return;
     mermaidOverlayNode.classList.remove("is-open");
     mermaidOverlayNode.setAttribute("aria-hidden", "true");
     body.classList.remove("mermaid-modal-open");
+
+    resetMermaidOverlayScale();
 
     if (activeMermaidNode && activeMermaidReturn && activeMermaidReturn.wrapper) {
       const { wrapper, nextSibling } = activeMermaidReturn;
@@ -221,6 +257,11 @@
 
     const closeButton = overlay.querySelector(".mermaid-overlay__close");
     if (closeButton) closeButton.focus();
+
+    requestAnimationFrame(() => {
+      scaleMermaidOverlay();
+      requestAnimationFrame(scaleMermaidOverlay);
+    });
   };
 
   const ensureMermaidControls = () => {
@@ -324,6 +365,12 @@
     });
     observer.observe(body, { attributes: true, attributeFilter: ["data-theme"] });
   };
+
+  window.addEventListener("resize", () => {
+    if (mermaidOverlayNode && mermaidOverlayNode.classList.contains("is-open")) {
+      scaleMermaidOverlay();
+    }
+  });
 
   applyGradients();
   initMermaid();

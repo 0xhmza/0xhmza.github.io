@@ -11,9 +11,9 @@ layout: compress
   <style>
   /* Add responsive top spacing to the page content */
   .projects-page {
-    padding-top: clamp(1rem, 5vw, 4rem);
+    padding-top: calc(var(--nav-height, 64px) + clamp(4.5rem, 12vw, 9rem));
   }
-</style>
+  </style>
   <script>
     const body = document.body;
     const data = body.getAttribute("data-theme");
