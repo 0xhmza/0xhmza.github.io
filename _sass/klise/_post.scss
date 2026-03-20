@@ -90,7 +90,7 @@
   a {
     color: $text-link-blue;
     text-decoration: none;
-    &[target="_blank"]::after {
+    &[target="_blank"]:not(.project-link-pill)::after {
       content: " \2197";
       font-size: $small-font-size;
       line-height: 0;
@@ -174,8 +174,8 @@
 
   h3 {
     @include relative-font-size(1.25);
-    border-bottom: 1px solid $light;
-    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-bottom: 6px;
   }
 
   h4 {
@@ -257,5 +257,5 @@
 }
 
 .post-updated-at {
-  font-family: "Ubuntu mono", "monospace";
+  font-family: $mono-family;
 }

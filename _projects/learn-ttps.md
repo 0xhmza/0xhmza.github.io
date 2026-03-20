@@ -2,23 +2,15 @@
 title: Learn TTPs
 date: 2026-03-09
 description: An Anki-style spaced repetition flashcard app for mastering the MITRE ATT&CK framework — techniques, tactics, and mitigations — entirely in a static website.
+tags: [JavaScript, MITRE ATT&CK, Spaced Repetition]
+links:
+  - label: Repository
+    url: https://github.com/0xhmza/learn-ttps
+    icon: github
+  - label: Live Demo
+    url: https://0xhmza.github.io/Learn-TTPs
+    icon: external
 ---
-
-<a href="https://github.com/0xhmza/learn-ttps"
-   style="font-family:'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-          font-weight:200; font-size:0.85rem; text-decoration:none;">
-   <span style="text-decoration:underline; text-underline-offset:2px; text-decoration-color:#c9cdd3;">
-    Repository: github.com/0xhmza/learn-ttps
-  </span>
-</a>
-<br>
-<a href="https://0xhmza.github.io/Learn-TTPs"
-   style="font-family:'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-          font-weight:200; font-size:0.85rem; text-decoration:none;">
-   <span style="text-decoration:underline; text-underline-offset:2px; text-decoration-color:#c9cdd3;">
-    Demo: ./../../Learn-TTPs/
-  </span>
-</a>
 
 Somewhere between reading a threat intel report and actually *understanding* it, there's a gap. A gap filled with acronyms you half-recognise, technique IDs you've seen before but can't quite place, and mitigation names that blur together after the third one. The MITRE ATT&CK framework is one of the most valuable resources in security — and one of the most quietly overwhelming.
 

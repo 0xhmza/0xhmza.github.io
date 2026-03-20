@@ -54,11 +54,19 @@ layout: compress
               <span class="sr-only">
                 {{ project.title | escape }} {{ project.date | date: "%b %d, %Y" }}
               </span>
-              {% if project.description %}
-                <div class="project-card__body">
+              <div class="project-card__body">
+                <h3 class="project-card__title">{{ project.title | escape }}</h3>
+                {% if project.description %}
                   <p class="project-card__desc">{{ project.description }}</p>
+                {% endif %}
+                {% if project.tags %}
+                <div class="project-card__tags">
+                  {% for tag in project.tags limit:3 %}
+                  <span class="project-card__tag">{{ tag }}</span>
+                  {% endfor %}
                 </div>
-              {% endif %}
+                {% endif %}
+              </div>
             </a>
           </article>
         {% endfor %}

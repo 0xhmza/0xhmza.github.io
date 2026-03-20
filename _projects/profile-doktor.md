@@ -2,15 +2,12 @@
 title: ProfileDoktor
 date: 2026-01-07
 description: A PowerShell solution to audit Windows user profiles for roaming-profile–related issues and reduce repetitive administrative work.
+tags: [PowerShell, Windows, Active Directory, Sysadmin]
+links:
+  - label: Repository
+    url: https://github.com/0xhmza/Profile-Doktor
+    icon: github
 ---
-
-<a href="https://github.com/0xhmza/Profile-Doktor"
-   style="font-family:'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-          font-weight:200; font-size:0.85rem; text-decoration:none;">
-   <span style="text-decoration:underline; text-underline-offset:2px; text-decoration-color:#c9cdd3;">
-    Repository: github.com/0xhmza/Profile-Doktor
-  </span>
-</a>
 
 **ProfileDoktor** is a **PowerShell 5.1+** auditing tool for Windows user profiles that helps administrators triage *roaming-profile–adjacent* problems (slow sign‑in/sign‑out, temporary profiles, profile copy failures, and profile state drift) by consolidating the most relevant evidence into a single **HTML report**.
 
