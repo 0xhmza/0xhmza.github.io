@@ -14,9 +14,9 @@ code {
     padding: 2px 6px;
     position: relative;
     top: -1px;
-    background-color: #f6f6f6;
-    border-radius: 4px;
-    border: 1px solid rgba(128,128,128,0.1);
+    background-color: $surface;
+    border-radius: 0;
+    border: 1px solid $light;
     font-size: 0.88em;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -24,7 +24,7 @@ code {
   }
 }
 
-// Codeblock Theme
+// Codeblock Theme — GitHub-inspired dark
 pre.highlight, pre {
   margin: 0 -27px;
   @include media-query($on-mobile) {
@@ -32,10 +32,10 @@ pre.highlight, pre {
     padding-left: 20px;
     padding-right: 20px;
   }
-  border: 1px solid rgba(128,128,128,0.1);
-  background-color: #1a1b21;
-  border-radius: 8px;
-  padding: 14px 16px;
+  border: 1px solid $light;
+  background-color: #161b22;
+  border-radius: 0;
+  padding: 16px 18px;
   display: block;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -60,15 +60,14 @@ pre.highlight, pre {
   margin: 0;
 }
 
+// GitHub-inspired syntax colors (dark background)
 .highlight,
 .highlight .w {
-  color: #fbf1c7;
-  // background-color: #1a1b21;
+  color: #e6edf3;
 }
 
 .highlight .err {
-  color: #fb4934;
-  // background-color: #1a1b21;
+  color: #f85149;
   font-weight: bold;
 }
 
@@ -77,40 +76,40 @@ pre.highlight, pre {
 .highlight .cm,
 .highlight .c1,
 .highlight .cs {
-  color: #928374;
+  color: #8b949e;
   font-style: italic;
 }
 
 .highlight .cp {
-  color: #8ec07c;
+  color: #79c0ff;
 }
 
 .highlight .nt {
-  color: #fb4934;
+  color: #7ee787;
 }
 
 .highlight .o,
 .highlight .ow {
-  color: #fbf1c7;
+  color: #ff7b72;
 }
 
 .highlight .p,
 .highlight .pi {
-  color: #fbf1c7;
+  color: #e6edf3;
 }
 
 .highlight .gi {
-  color: #b8bb26;
-  background-color: #282828;
+  color: #aff5b4;
+  background-color: rgba(63, 185, 80, 0.15);
 }
 
 .highlight .gd {
-  color: #fb4934;
-  background-color: #282828;
+  color: #ffa198;
+  background-color: rgba(248, 81, 73, 0.15);
 }
 
 .highlight .gh {
-  color: #b8bb26;
+  color: #79c0ff;
   font-weight: bold;
 }
 
@@ -119,19 +118,19 @@ pre.highlight, pre {
 .highlight .kp,
 .highlight .kr,
 .highlight .kv {
-  color: #fb4934;
+  color: #ff7b72;
 }
 
 .highlight .kc {
-  color: #d3869b;
+  color: #79c0ff;
 }
 
 .highlight .kt {
-  color: #fabd2f;
+  color: #ffa657;
 }
 
 .highlight .kd {
-  color: #fe8019;
+  color: #ff7b72;
 }
 
 .highlight .s,
@@ -142,38 +141,35 @@ pre.highlight, pre {
 .highlight .sh,
 .highlight .sx,
 .highlight .s1 {
-  color: #b8bb26;
-  font-style: italic;
+  color: #a5d6ff;
 }
 
 .highlight .si {
-  color: #b8bb26;
-  font-style: italic;
+  color: #a5d6ff;
 }
 
 .highlight .sr {
-  color: #b8bb26;
-  font-style: italic;
+  color: #7ee787;
 }
 
 .highlight .se {
-  color: #fe8019;
+  color: #ffa657;
 }
 
 .highlight .nn {
-  color: #8ec07c;
+  color: #ffa657;
 }
 
 .highlight .nc {
-  color: #8ec07c;
+  color: #ffa657;
 }
 
 .highlight .no {
-  color: #d3869b;
+  color: #79c0ff;
 }
 
 .highlight .na {
-  color: #b8bb26;
+  color: #79c0ff;
 }
 
 .highlight .m,
@@ -184,9 +180,9 @@ pre.highlight, pre {
 .highlight .mo,
 .highlight .mb,
 .highlight .mx {
-  color: #d3869b;
+  color: #79c0ff;
 }
 
 .highlight .ss {
-  color: #83a598;
+  color: #a5d6ff;
 }

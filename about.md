@@ -1,5 +1,5 @@
 ---
-title: preamble
+title: about
 permalink: /about/
 layout: page
 excerpt: Hamza's personal blog.

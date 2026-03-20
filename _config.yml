@@ -1,12 +1,12 @@
 # Site settings
-title: Hamza's personal blog # site title
+title: 0xHMZA # site title
 description: >- # site description
-  Personal Github page.
+  Security, systems, and everything in between.
 lang: en-US # default lang
 timezone: Asia/Jakarta # set your timezone
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
 repo:  # site repo [optional]
-mode: light # default theme "dark" | "light"
+mode: dark # default theme "dark" | "light"
 
 # Profile settings
 author:

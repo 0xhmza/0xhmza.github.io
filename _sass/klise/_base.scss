@@ -9,7 +9,7 @@
 
 .notransition {
   -webkit-transition: none;
-  -moz-transition: none; 
+  -moz-transition: none;
   -ms-transition: none;
   -o-transition: none;
   transition: none;
@@ -81,7 +81,7 @@ figure,
 // strong | bold
 strong,
 b {
-  font-weight: $bold-weight;
+  font-weight: $semibold-weight;
   color: $black;
 }
 
@@ -94,17 +94,15 @@ hr {
 
 // kbd tag
 kbd {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border: 1px solid $light;
-  border-radius: 2px;
+  border-radius: 0;
   color: $black;
   display: inline-block;
   font-size: $small-font-size;
   line-height: 1.4;
   font-family: $mono-family;
   margin: 0 0.1em;
-  font-weight: $bold-weight;
+  font-weight: $medium-weight;
   padding: 0.01em 0.4em;
   text-shadow: 0 1px 0 $white;
 }
@@ -143,13 +141,14 @@ ul {
     text-align: -webkit-match-parent;
   }
   li::before {
-    content: "\FE63";
+    content: "\2014";
     display: inline-block;
     top: -1px;
     width: 1.2em;
     position: relative;
     margin-left: -1.3em;
-    font-weight: 700;
+    font-weight: 400;
+    color: $gray;
   }
 }
 
@@ -167,8 +166,10 @@ ol {
       margin-left: -1.6em;
       text-align: right;
       direction: rtl;
-      font-weight: $bold-weight;
+      font-weight: $semibold-weight;
       font-size: $small-font-size;
+      font-family: $mono-family;
+      color: $gray;
     }
   }
 }
@@ -184,7 +185,7 @@ li {
   padding-top: 1px;
 
   &:before {
-    color: $black;
+    color: $gray;
   }
 
   > ul,
@@ -202,8 +203,8 @@ h4,
 h5,
 h6 {
   color: $black;
-  font-weight: $bold-weight;
-  letter-spacing: -0.02em;
+  font-weight: $semibold-weight;
+  letter-spacing: -0.025em;
   & + ul,
   & + ol {
     margin-top: 10px;
@@ -232,16 +233,16 @@ h6 > a {
 
 // Link
 a {
-  color: inherit;
-  text-decoration-color: $smoke;
-  transition: color 150ms ease, text-decoration-color 150ms ease;
+  color: $text-link-blue;
+  text-decoration: none;
+  transition: color 120ms ease;
 
   &:hover {
-    color: $text-link-blue;
+    color: $text-link-blue-active;
   }
 
   &:focus {
-    outline: 3px solid rgba(0, 54, 199, 0.6);
+    outline: 2px solid rgba(9, 105, 218, 0.5);
     outline-offset: 2px;
   }
 }
@@ -259,18 +260,16 @@ em {
 // Blockquotes
 blockquote {
   color: $gray;
-  font-style: italic;
+  font-style: normal;
   text-align: left;
-  opacity: 0.9;
-  border-left: 3px solid $text-link-blue;
+  border-left: 3px solid $light;
   border-top: none;
   border-bottom: none;
   padding: 8px 16px;
   margin-left: 2px;
   margin-right: 10px;
   font-size: 0.95em;
-  background: rgba(0, 63, 255, 0.025);
-  border-radius: 0 6px 6px 0;
+  background: $surface;
 
   > :last-child {
     margin-bottom: 0;
@@ -304,7 +303,7 @@ blockquote {
 
 // Underline
 u {
-  text-decoration-color: #d2c7c7;
+  text-decoration-color: $light;
 }
 
 // Small
@@ -314,7 +313,6 @@ small {
 
 // Superscript
 sup {
-  border-radius: 10%;
   top: -3px;
   left: 2px;
   font-size: small;
@@ -349,16 +347,16 @@ table {
   font-size: $small-font-size;
 
   thead {
-    font-weight: $bold-weight;
+    font-weight: $semibold-weight;
     color: $black;
-    border-bottom: 1px solid $light;
+    border-bottom: 2px solid $light;
   }
 
   th,
   td,
   tr {
     border: 1px solid $light;
-    padding: 2px 7px;
+    padding: 6px 12px;
   }
 }
 
@@ -371,12 +369,12 @@ table {
 
 // Highlight & selection
 mark {
-  background: #fffba0;
+  background: #fff8c5;
   color: $black;
 }
 
 ::selection {
-  background: rgba(0, 63, 255, 0.12);
+  background: rgba(9, 105, 218, 0.15);
   color: $black;
 }
 

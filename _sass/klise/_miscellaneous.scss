@@ -3,7 +3,6 @@
   0% {
     opacity: 0.2;
   }
-
   100% {
     opacity: 0.8;
   }
@@ -14,9 +13,20 @@
   0% {
     filter: blur(0px);
   }
-
   100% {
     filter: blur(4px);
+  }
+}
+
+// Slide up entrance
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -40,15 +50,48 @@
   }
 }
 
+// Entrance animations for page elements
+.author {
+  animation: slideUp 0.4s ease-out both;
+}
+
+.posts-item-note {
+  animation: slideUp 0.4s ease-out 0.05s both;
+}
+
+.post-item {
+  animation: slideUp 0.35s ease-out both;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{0.04 * $i}s;
+    }
+  }
+}
+
+.project-card {
+  animation: slideUp 0.35s ease-out both;
+
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{0.05 * $i}s;
+    }
+  }
+}
+
+.header {
+  animation: slideUp 0.4s ease-out both;
+}
+
 // Mermaid fullscreen controls
 .mermaid-wrap {
   position: relative;
   margin: 1.6rem 0;
   padding: 18px 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(13, 18, 43, 0.08);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 18px 36px rgba(13, 18, 43, 0.1);
+  border-radius: 0;
+  border: 1px solid $light;
+  background: $surface;
+  box-shadow: none;
 }
 
 .mermaid-wrap .mermaid {
@@ -57,36 +100,37 @@
 
 .mermaid-fullscreen-btn {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 38px;
-  height: 38px;
-  border-radius: 999px;
-  border: 1px solid rgba(15, 22, 32, 0.16);
-  background: rgba(255, 255, 255, 0.9);
-  color: #1f2933;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  border: 1px solid $light;
+  background: $white;
+  color: $gray;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  opacity: 0.65;
+  opacity: 0;
   z-index: 2;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: none;
+  transition: opacity 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
 .mermaid-fullscreen-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 .mermaid-wrap:hover .mermaid-fullscreen-btn,
 .mermaid-fullscreen-btn:focus-visible {
   opacity: 1;
-  transform: translateY(-1px);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
+}
+
+.mermaid-fullscreen-btn:hover {
+  border-color: $text-link-blue;
+  color: $text-link-blue;
 }
 
 .mermaid-overlay {
@@ -100,9 +144,9 @@
     calc(12px + env(safe-area-inset-right, 0px))
     calc(12px + env(safe-area-inset-bottom, 0px))
     calc(12px + env(safe-area-inset-left, 0px));
-  background: rgba(245, 247, 250, 0.38);
-  backdrop-filter: blur(18px) saturate(130%);
-  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -124,10 +168,10 @@
   gap: 16px;
   padding: clamp(20px, 2.5vw, 32px);
   padding-top: clamp(56px, 6vw, 78px);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(15, 22, 32, 0.08);
-  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.28);
+  border-radius: 0;
+  background: $white;
+  border: 1px solid $light;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   overflow: hidden;
 }
 
@@ -158,31 +202,29 @@
 
 .mermaid-overlay__close {
   position: absolute;
-  top: 28px;
-  right: 24px;
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  border: 1px solid rgba(180, 35, 44, 0.35);
-  background: rgba(255, 235, 236, 0.9);
-  color: #b4232c;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+  border: 1px solid $light;
+  background: $white;
+  color: $gray;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-  font-size: 22px;
+  box-shadow: none;
+  transition: border-color 150ms ease, color 150ms ease;
+  font-size: 20px;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .mermaid-overlay__close:focus-visible,
 .mermaid-overlay__close:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+  border-color: $text-link-blue;
+  color: $text-link-blue;
 }
 
 body.mermaid-modal-open {
@@ -203,10 +245,9 @@ body.mermaid-modal-open {
   }
 
   .mermaid-overlay__card {
-    width: 80vw;
-    height: 80vh;
+    width: 90vw;
+    height: 85vh;
     max-height: none;
     padding: 44px 16px 16px;
-    border-radius: 16px;
   }
 }

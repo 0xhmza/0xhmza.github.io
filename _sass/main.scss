@@ -4,35 +4,37 @@ $mono-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
 $base-font-size: 16px;
 $medium-font-size: $base-font-size * 0.938;
 $small-font-size: $base-font-size * 0.875;
-$base-line-height: 1.8;
+$base-line-height: 1.7;
 
 // Font weight
 $normal-weight: 400;
+$medium-weight: 500;
 $semibold-weight: 600;
 $bold-weight: 700;
-// $black-weight: 900; // uncomment if necessary
 
-//Light Colors
-$text-base-color: #434648;
-$text-link-blue: #003fff;
-$text-link-blue-active: #0036c7;
+// Light Colors — GitHub-inspired
+$text-base-color: #1f2328;
+$text-link-blue: #0969da;
+$text-link-blue-active: #0550ae;
 
-$black: #0d122b;
-$light: #ececec;
-$smoke: #d2c7c7;
-$gray: #6b7886;
-$white: #fff;
+$black: #1f2328;
+$light: #d0d7de;
+$smoke: #d8dee4;
+$gray: #656d76;
+$white: #ffffff;
+$surface: #f6f8fa;
 
-// Dark Colors
-$dark-text-base-color: #c7bebe;
-$dark-text-link-blue: #ff5277;
-$dark-text-link-blue-active: #ff2957;
+// Dark Colors — GitHub dark
+$dark-text-base-color: #e6edf3;
+$dark-text-link-blue: #58a6ff;
+$dark-text-link-blue-active: #79c0ff;
 
-$dark-black: #131418;
-$dark-white: #eaeaea;
-$dark-light: #1b1d25;
-$dark-smoke: #4a4d56;
-$dark-gray: #767f87;
+$dark-black: #0d1117;
+$dark-white: #e6edf3;
+$dark-light: #30363d;
+$dark-smoke: #484f58;
+$dark-gray: #8b949e;
+$dark-surface: #161b22;
 
 // Width of the content area
 $wide-size: 890px;
