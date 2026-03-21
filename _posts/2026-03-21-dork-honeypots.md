@@ -15,7 +15,6 @@ tags: [Threat Intelligence, Deception, Honeypots, OSINT, Blue Team]
 
 I had a thought the other day that I think is actually pretty cool, so I'm writing it down before I forget.
 
----
 
 ### The setup
 
@@ -33,11 +32,10 @@ We spend a lot of energy hardening our systems so they don't show up in those se
 
 > **What if we built websites specifically designed to show up in those searches?**
 
----
 
 ### The idea
 
-A dork honeypot is a fake website constructed to satisfy the conditions of a known dork query — intentionally indexable, deliberately reachable, and quietly logging everyone who lands on it.
+A dork honeypot is a fake website constructed to satisfy the conditions of a known dork query intentionally indexable, deliberately reachable, and quietly logging everyone who lands on it.
 
 The logic is clean:
 
@@ -53,13 +51,12 @@ If someone reaches your page through a dork-shaped URI, there are really only tw
 
 ### Why this works
 
-The attacker's methodology is their weakness here. Dork queries are precise. They're not searching for anything — they're searching for *specific indicators* of misconfiguration or exposure. That precision means you can construct pages that match exactly those indicators, with no organic reason for a normal user to ever land there.
+The attacker's methodology is their weakness here. Dork queries are precise. They're not searching for anything, they're searching for *specific indicators* of misconfiguration or exposure. That precision means you can construct pages that match exactly those indicators, with no organic reason for a normal user to ever land there.
 
 A page that looks like an exposed `.env` file, a forgotten backup endpoint, or an open directory listing is never going to appear in someone's bookmark bar. If someone navigates to it, they were looking for it.
 
 That's a meaningful signal.
 
----
 
 ### Taking it further — a dork honeypot generator
 
@@ -74,7 +71,6 @@ The more dorks you feed it, the more surface area you create. Multiple dorks tar
 
 For automated recon scripts (tools that take a dork and dump a list of URLs), your honeypot endpoints are just valid targets. They'll get queued, hit, and logged automatically. No interaction required.
 
----
 
 ### The dashboard concept
 
@@ -87,7 +83,6 @@ The management side of this doesn't need to be complicated. A minimal interface:
 
 Reusing a domain across multiple dork campaigns isn't a bug — it's a feature. A domain with a hundred indexed "misconfigured" pages has a much better chance of appearing in search results than a fresh domain with one page. The fake surface compounds over time.
 
----
 
 ### What you do with the data
 
@@ -98,7 +93,6 @@ That's up to you. A few useful directions:
 - **Early warning** — If an attacker is dorking for your industry's common misconfigurations, that's advance notice of targeting before any real attack surface is hit.
 - **Deception campaigns** — Fake config files, fake credentials, fake internal documentation. Let them think they found something, and watch what they do with it.
 
----
 
 ### The honest caveats
 
@@ -108,4 +102,4 @@ But as a layer in a broader threat intel or deception strategy? It's underused. 
 
 ---
 
-That's the thought. I think someone should build it properly. Maybe I will.
+That's it. I think someone should build it properly. Maybe I will :/
