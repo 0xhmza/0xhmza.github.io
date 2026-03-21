@@ -42,6 +42,8 @@ layout: compress
       <section class="projects-grid">
         {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
         {% for project in sorted_projects %}
+          {%- assign _pfname = project.path | split: '/' | last -%}
+          {%- unless _pfname | slice: 0 == '#' -%}
           <article class="project-card">
             <a class="project-card__link" href="{{ project.url | relative_url }}">
               <div
@@ -69,6 +71,7 @@ layout: compress
               </div>
             </a>
           </article>
+          {%- endunless -%}
         {% endfor %}
       </section>
     </main>

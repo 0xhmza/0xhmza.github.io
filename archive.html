@@ -16,6 +16,8 @@ comments: false
 <ul id="search-results"></ul>
 
 {%- for post in site.posts -%}
+  {%- assign _fname = post.path | split: '/' | last -%}
+  {%- unless _fname | slice: 0 == '#' -%}
   {%- capture current_year -%}{{ post.date | date: "%Y" }}{%- endcapture -%}
   {%- unless current_year == previous_year -%}
     <h2>{{ current_year }}</h2>
@@ -24,6 +26,7 @@ comments: false
   <article class="post-item">
     <h3 class="post-item-title">
       <a href="{{ post.url }}">{{ post.title | escape }}</a>
-    </h3> 
+    </h3>
   </article>
+  {%- endunless -%}
 {%- endfor -%}
