@@ -6,7 +6,8 @@ home: true
 <h3 class="posts-item-note" aria-label="Recent Posts">Recent Posts</h3>
 {%- for post in site.posts limit: site.number_of_posts -%}
   {%- assign _fname = post.path | split: '/' | last -%}
-  {%- unless _fname | slice: 0 == '#' -%}
+  {%- assign _fchar = _fname | slice: 0 -%}
+  {%- unless _fchar == '#' -%}
 <article class="post-item">
   <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
   <h4 class="post-item-title">

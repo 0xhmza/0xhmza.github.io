@@ -17,7 +17,8 @@ comments: false
 
 {%- for post in site.posts -%}
   {%- assign _fname = post.path | split: '/' | last -%}
-  {%- unless _fname | slice: 0 == '#' -%}
+  {%- assign _fchar = _fname | slice: 0 -%}
+  {%- unless _fchar == '#' -%}
   {%- capture current_year -%}{{ post.date | date: "%Y" }}{%- endcapture -%}
   {%- unless current_year == previous_year -%}
     <h2>{{ current_year }}</h2>

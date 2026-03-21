@@ -43,7 +43,8 @@ layout: compress
         {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
         {% for project in sorted_projects %}
           {%- assign _pfname = project.path | split: '/' | last -%}
-          {%- unless _pfname | slice: 0 == '#' -%}
+          {%- assign _pfchar = _pfname | slice: 0 -%}
+          {%- unless _pfchar == '#' -%}
           <article class="project-card">
             <a class="project-card__link" href="{{ project.url | relative_url }}">
               <div
