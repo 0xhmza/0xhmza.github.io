@@ -4,7 +4,7 @@ description: >- # site description
   Security, systems, and everything in between.
 lang: en-US # default lang
 timezone: Asia/Jakarta # set your timezone
-image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
+image: /assets/favicons/android-chrome-384x384.png # Default Open Graph/Twitter image
 repo:  # site repo [optional]
 mode: dark # default theme "dark" | "light"
 
@@ -21,7 +21,7 @@ author:
   avatar: /assets/img/avatar.jpg # change with your own avatar
 
 # URL settings
-url: "https://0xhmza.github.io/" #
+url: "https://0xhmza.github.io" #
 baseurl:
 permalink: /:title/
 google_analytics: # leave it blank if not wish
