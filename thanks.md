@@ -12,7 +12,7 @@ To the friends, mentors and collaborators who
 - saved me from mistakes,  
 - connected me with good people,  
 - gave advice when I was down,  
-- pushed me to level up —  
+- pushed me to level up
 
 You helped me grow from ordinary to something better.  
 

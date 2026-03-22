@@ -16,7 +16,7 @@ The attack surface has never been more restless. Threat vectors evolve faster th
 
 ## The idea
 
-I'd been using [Anki](https://apps.ankiweb.net/) for years — university coursework, language learning, anything that required things to actually stick. The mechanism is almost deceptively simple: show you a card right before you'd forget it, and no sooner. It sounds underwhelming until you realise that, done consistently, it moves a piece of knowledge from *"I've read this"* to *"I know this"*, and keeps it there with surprisingly little daily effort.
+I'd been using [Anki](https://apps.ankiweb.net/) for years: university coursework, language learning, anything that required things to actually stick. The mechanism is almost deceptively simple: show you a card right before you'd forget it, and no sooner. It sounds underwhelming until you realise that, done consistently, it moves a piece of knowledge from *"I've read this"* to *"I know this"*, and keeps it there with surprisingly little daily effort.
 
 **Learn TTPs** applies that same logic to the MITRE ATT&CK framework. It's an Anki-style spaced repetition flashcard app, built as a fully static website with the help of Claude Code, loading its content directly from the ATT&CK dataset.
 

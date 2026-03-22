@@ -1,7 +1,7 @@
 ---
 title: "Why Simulated Phishing Campaigns Don’t Make Companies Safer"
 date: 2026-01-31
-description: Human-centred security research (incl. M. Angela Sasse) suggests “gotcha” phishing tests optimize vanity metrics, raise stress, and undermine reporting—without improving real resilience.
+description: Human-centred security research (incl. M. Angela Sasse) suggests “gotcha” phishing tests optimize vanity metrics, raise stress, and undermine reporting, without improving real resilience.
 gradient_dark:
   - "#0b1320"
   - "#1c2541"
@@ -21,7 +21,7 @@ gradient_light:
 </a>
 
 Simulated phishing campaigns (SPCs) are often treated as a *cheap behavioral control*: send fake phish, measure clicks, “train” those who fail.
-Human‑centred security research argues this framing is backwards: **users are not the enemy**—security outcomes depend on systems, incentives, and trust, not “catching people out”.[^adams1999]
+Human‑centred security research argues this framing is backwards: **users are not the enemy**. Security outcomes depend on systems, incentives, and trust, not “catching people out”.[^adams1999]
 
 ---
 
@@ -30,7 +30,7 @@ Human‑centred security research argues this framing is backwards: **users are 
 Click rate is an attractive KPI because it’s simple and trends downward over time. But that trend is a weak proxy for whether the organization is safer.
 
 - **Non-click ≠ detection.** People may ignore emails for unrelated reasons, or learn to avoid interacting with anything “weird.”[^lain2021]
-- **A “don’t click” culture can suppress reporting.** When staff fear embarrassment or punishment, they delay or avoid escalating near-misses—reducing the organization’s early warning capability.[^brunken2023]
+- **A “don’t click” culture can suppress reporting.** When staff fear embarrassment or punishment, they delay or avoid escalating near-misses, reducing the organization’s early warning capability.[^brunken2023]
 - **Phishing is largely an attention problem.** More content and more enforcement doesn’t reliably fix attention under load.[^lain2024]
 
 ```mermaid
@@ -55,7 +55,7 @@ flowchart TB
 A large field study co-authored by Sasse measured employees immediately after interacting with a simulated phish:
 
 - Employees who **clicked** reported **higher perceived stress** and **lower phishing self‑efficacy** than those who **reported** the email.[^schops2024]
-- Stress is not a “teachable moment” freebie—stress can impair learning and degrade performance, especially when compounded over time.[^schops2024]
+- Stress is not a “teachable moment” freebie, stress can impair learning and degrade performance, especially when compounded over time.[^schops2024]
 
 That’s the wrong direction for an organization trying to build *competence* and *fast reporting*.
 
@@ -85,7 +85,7 @@ Human‑centred security work emphasizes designing secure routines and removing 
 - Track **time-to-report**, **report rate**, and **triage accuracy**, not just click rate.[^lain2021]
 
 3) **Fix the boundary conditions**
-- Reduce the blast radius with MFA, least privilege, safer attachment handling, and strong email authentication—controls that don’t depend on perfect attention.
+- Reduce the blast radius with MFA, least privilege, safer attachment handling, and strong email authentication, controls that don’t depend on perfect attention.
 
 ```mermaid
 sequenceDiagram
