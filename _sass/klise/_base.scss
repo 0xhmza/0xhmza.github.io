@@ -1,3 +1,28 @@
+// Scrollbar custom properties
+:root {
+  --sb-thumb: #{$smoke};
+  --sb-thumb-hover: #{$gray};
+  --sb-track: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sb-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
 // Reset some basic elements
 * {
   -webkit-transition: background-color 75ms ease-in, border-color 75ms ease-in;
@@ -19,6 +44,8 @@ html {
   overflow-x: hidden;
   overflow-y: scroll;
   width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
 }
 
 body,

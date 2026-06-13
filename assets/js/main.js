@@ -4,12 +4,15 @@
   const lamp = document.getElementById("mode");
 
   const toggleTheme = (state) => {
+    const root = document.documentElement;
     if (state === "dark") {
       localStorage.setItem("theme", "light");
       body.removeAttribute("data-theme");
+      root.removeAttribute("data-theme");
     } else if (state === "light") {
       localStorage.setItem("theme", "dark");
       body.setAttribute("data-theme", "dark");
+      root.setAttribute("data-theme", "dark");
     } else {
       initTheme(state);
     }
@@ -353,6 +356,28 @@
     renderMermaid();
   };
 
+  const syncDiagramTheme = () => {
+    const isDark = body.getAttribute("data-theme") === "dark";
+    const wraps = document.querySelectorAll(".drawio-wrap[id]");
+    if (!wraps.length || !window.GraphViewer) return;
+
+    wraps.forEach(wrap => {
+      const stored = window._drawioConfigs && window._drawioConfigs[wrap.id];
+      if (!stored) return;
+      try {
+        const config = JSON.parse(stored);
+        config["dark-mode"] = isDark ? "1" : "0";
+        wrap.innerHTML = "";
+        const div = document.createElement("div");
+        div.className = "mxgraph";
+        div.style.cssText = "max-width:100%;border:1px solid transparent;";
+        div.setAttribute("data-mxgraph", JSON.stringify(config));
+        wrap.appendChild(div);
+        window.GraphViewer.processElements();
+      } catch (e) {}
+    });
+  };
+
   const observeMermaidTheme = () => {
     if (!body || !window.MutationObserver) return;
     let currentTheme = body.getAttribute("data-theme");
@@ -361,6 +386,7 @@
       if (nextTheme !== currentTheme) {
         currentTheme = nextTheme;
         renderMermaid();
+        syncDiagramTheme();
       }
     });
     observer.observe(body, { attributes: true, attributeFilter: ["data-theme"] });

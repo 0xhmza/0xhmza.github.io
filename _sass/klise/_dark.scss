@@ -1,3 +1,9 @@
+html[data-theme="dark"] {
+  --sb-thumb: #{$dark-light};
+  --sb-thumb-hover: #{$dark-smoke};
+  --sb-track: transparent;
+}
+
 body[data-theme="dark"] {
   color: $dark-text-base-color;
   background-color: $dark-black;
