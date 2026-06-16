@@ -4,29 +4,52 @@ permalink: /sitemap.xml
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% assign pages_list = site.pages | where_exp: "page", "page.sitemap != false" %}
-  {% for page in pages_list %}
-    {% unless page.url contains 'assets' or page.url contains 'feed.xml' or page.url contains 'search.json' %}
+  {%- comment -%}Exclusions: noindex pages, assets, feeds, test files, and non-HTML resources{%- endcomment -%}
+  {%- assign excluded_urls = "404.html,sitemap.xml,robots.txt,test.html,feed.xml,search.json" | split: "," -%}
+  {%- assign pages_list = site.pages | where_exp: "page", "page.sitemap != false" -%}
+  {%- for page in pages_list -%}
+    {%- assign skip = false -%}
+    {%- for ex in excluded_urls -%}
+      {%- if page.url contains ex -%}{%- assign skip = true -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if page.url contains '/assets/' -%}{%- assign skip = true -%}{%- endif -%}
+    {%- unless skip -%}
     <url>
       <loc>{{ page.url | remove: "index.html" | remove: ".html" | absolute_url }}</loc>
-      {% if page.last_modified_at %}
+      {%- if page.last_modified_at -%}
       <lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>
-      {% elsif page.date %}
+      {%- elsif page.date -%}
       <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
-      {% endif %}
+      {%- else -%}
+      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+      {%- endif -%}
+      {%- if page.url == "/" or page.url == "/index.html" -%}
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+      {%- elsif page.url contains '/about/' or page.url contains '/projects/' -%}
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      {%- else -%}
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+      {%- endif -%}
     </url>
-    {% endunless %}
-  {% endfor %}
-  {% for post in site.posts %}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- for post in site.posts -%}
     <url>
       <loc>{{ post.url | absolute_url }}</loc>
       <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
     </url>
-  {% endfor %}
-  {% for project in site.projects %}
+  {%- endfor -%}
+  {%- for project in site.projects -%}
     <url>
       <loc>{{ project.url | absolute_url }}</loc>
       <lastmod>{{ project.date | date_to_xmlschema }}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
     </url>
-  {% endfor %}
+  {%- endfor -%}
 </urlset>

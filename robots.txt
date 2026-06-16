@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /robots.txt
+---
+User-agent: *
+# Static pages
+Allow: /$
+Allow: /about/
+Allow: /archive/
+Allow: /projects/
+Allow: /tags/
+Allow: /thanks/
+Allow: /assets/
+Allow: /sitemap.xml
+# Blog posts
+{% for post in site.posts %}
+Allow: {{ post.url }}
+{% endfor %}
+# Projects
+{% for project in site.projects %}
+Allow: {{ project.url }}
+{% endfor %}
+# Block everything else (other repos/projects on this domain)
+Disallow: /
+Sitemap: {{ site.url }}/sitemap.xml
