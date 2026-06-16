@@ -6,7 +6,8 @@ excerpt: Hamza's personal blog.
 comments: false
 ---
 
-I am a cybersecurity student at RUB (Ruhr University Bochum), based in Bochum, Germany. Currently, I work as a **System Administrator** in part time while diving deep into security, networks, and different technologies. This blog documents my learning journey, experiments, and day-to-day projects around cybersecurity, system administration, and development, all running on Jekyll and hosted on GitHub Pages.
+I'm a cybersecurity student at Ruhr University Bochum (RUB), based in Bochum, Germany. Alongside my studies, I work part-time as a **System Administrator**, bridging theory and practice on a daily basis. My interests span infrastructures security, networking, and maldev.
+
 
 ---
 ## Contact & Contributions
