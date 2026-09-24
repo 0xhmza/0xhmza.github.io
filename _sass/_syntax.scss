@@ -1,0 +1,14 @@
+code, pre { font-family: var(--mono); }
+:not(pre) > code { background: var(--surface); border: 1px solid var(--border); padding: .12rem .35rem; border-radius: 0; overflow-wrap: anywhere; }
+pre { background: var(--code-bg); color: var(--code-text); padding: 1.25rem; margin: 1.7rem 0; border: 1px solid var(--border); border-radius: 0; overflow: auto; line-height: 1.7; tab-size: 2; }
+pre code { white-space: pre; overflow-wrap: normal; }
+.code-block { position: relative; margin: 1.7rem 0; }
+.code-block pre { margin: 0; padding-top: 3rem; max-height: 560px; }
+.copy-button { position: absolute; top: .6rem; right: .6rem; z-index: 1; padding: .2rem .6rem; color: var(--muted); font: 1rem/1.8 var(--mono); }
+.copy-button:hover { color: var(--accent); }
+.code-language { position: absolute; top: .9rem; left: 1.25rem; font: 1rem var(--mono); color: var(--muted); text-transform: uppercase; }
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cp, .highlight .cs { color: var(--code-comment); }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt, .highlight .o, .highlight .ow { color: var(--code-keyword); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sr, .highlight .sx { color: var(--code-string); }
+.highlight .m, .highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo, .highlight .il, .highlight .nb, .highlight .nc, .highlight .nf, .highlight .nn { color: var(--code-number); }
+.highlight .err { text-decoration: underline wavy #e89090; }

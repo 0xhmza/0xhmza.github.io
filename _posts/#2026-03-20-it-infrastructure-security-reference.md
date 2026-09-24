@@ -1,15 +1,8 @@
 ---
+published: false
 title: "IT Infrastructure & Security Architecture — Complete Reference"
 date: 2026-03-20
 description: A comprehensive visual and technical reference covering 22 architecture sections, 200+ security tools, SVG diagrams, and real-world solutions — from physical switches to SIEM, SOAR, and cloud-native security.
-gradient_dark:
-  - "#080c10"
-  - "#0d1117"
-  - "#1e3044"
-gradient_light:
-  - "#eef3fb"
-  - "#dbe7f7"
-  - "#c5daf3"
 tags: [Infrastructure, Security, Architecture, Reference]
 ---
 

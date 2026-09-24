@@ -6,3 +6,6 @@ _site/
 .bundle/
 vendor/
 _projects/dummy-project.md
+node_modules/
+.artifacts/
+__pycache__/

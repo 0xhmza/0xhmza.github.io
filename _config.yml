@@ -1,93 +1,55 @@
-# Site settings
-title: 0xHMZA # site title
-description: >- # site description
-  Security, systems, and everything in between.
-lang: en-US # default lang
-timezone: Asia/Jakarta # set your timezone
-image: /assets/favicons/android-chrome-384x384.png # Default Open Graph/Twitter image
-repo:  # site repo [optional]
-mode: dark # default theme "dark" | "light"
-
-# Profile settings
-author:
-  name: Hamza # author name
-  bio: >- # tell to the world
-    A cybersecurity student in the Ruhr University of Bochum. Currently a part time system administrator.
-  username: 0xhmza # general username
-  github: 0xhmza # github username
-  twitter: N.A. - # twitter username
-  facebook: N.A. - # facebook username
-  email: hmza@tbd.com # email adress
-  avatar: /assets/img/avatar.jpg # change with your own avatar
-
-# URL settings
-url: "https://0xhmza.github.io" #
-baseurl:
+title: 0xHMZA
+description: Security, systems, and the people in between.
+lang: en-US
+timezone: Europe/Berlin
+url: "https://0xhmza.github.io"
+baseurl: ""
 permalink: /:title/
-google_analytics: # leave it blank if not wish
-fb_appid:
+image: /assets/favicons/android-chrome-384x384.png
 
-# Collection setting
+author:
+  name: Hamza
+  github: 0xhmza
+  avatar: /assets/img/avatar.jpg
+
 collections:
-  posts:
-    output: true
   projects:
     output: true
     permalink: /projects/:name/
 
-# Markdown settings
 markdown: kramdown
 highlighter: rouge
 kramdown:
   syntax_highlighter: rouge
 
-# Default front matter
 defaults:
   - scope:
       path: ""
-      type: "posts"
+      type: posts
     values:
       layout: post
-      comments: false
   - scope:
       path: ""
-      type: "projects"
+      type: projects
     values:
       layout: project
-      comments: false
 
-# Jekyll Compose default front matter
-jekyll_compose:
-  post_default_front_matter:
-    modified:
-    tags: []
-    description:
-  draft_default_front_matter:
-    modified:
-    tags: []
-    description:
-
-# Homepage limit posts
 number_of_posts: 5
-
-# Build settings
-# theme: klise
 sass:
   style: compressed
-
-include:
-  - _redirects
-  - .htaccess
 
 exclude:
   - Gemfile
   - Gemfile.lock
   - LICENSE
   - README.md
+  - vendor
   - node_modules
+  - scripts
+  - docs
+  - test.html
+  - assets/img/projects
 
-# Plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-  - jekyll-postfiles

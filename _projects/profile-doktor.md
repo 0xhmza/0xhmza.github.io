@@ -37,19 +37,21 @@ The core model is straightforward:
 - at sign‑out, the local copy **merges back** to the server copy.[^ms-rup-overview]
 ```mermaid
 sequenceDiagram
+  accTitle: Roaming profile synchronization
+  accDescr: Sign-in authenticates the user and merges the server profile into a local cache. Sign-out flushes the user hive and synchronizes changes to the file server.
   autonumber
   participant U as User
   participant C as Windows Client
-  participant DC as Logon Server / Domain Controller
-  participant FS as Profile File Server (SMB)\\\FS01\Profiles$
+  participant DC as Domain controller
+  participant FS as Profile file server
 
   Note over U,C: Logon (Roaming profile load)
   U->>C: Enter credentials
   C->>DC: Authenticate (Kerberos/NTLM)
-  DC-->>C: Auth OK + profile path (\\FS01\Profiles$\%username%)
+  DC-->>C: Authentication OK + profile path
   C->>FS: SMB connect + access check
   FS-->>C: Profile data (NTUSER.DAT, AppData, etc.)
-  C->>C: Load/merge into local cache (C:\Users\<User>)
+  C->>C: Merge profile into local cache
   Note over C: User session starts
 
   Note over U,C: Logoff (Roaming profile sync back)

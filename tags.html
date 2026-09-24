@@ -1,31 +1,10 @@
 ---
-title: Tags
+title: Topics
 permalink: /tags/
-layout: page
-excerpt: Sorted article by tags.
+layout: default
+description: Explore the notebook by topic.
 ---
-
-<div class="archive-tags">
-  <a class="tag-item" href="#">all</a>
-  {%- for tag in site.tags -%} 
-    {% capture name %}{{ tag | first }}{% endcapture %}
-    <a class="tag-item" href="#{{name}}">{{ name }}</a> 
-  {%- endfor -%}
-</div>
-
-{%- for tag in site.tags -%}
-  {%- capture name -%}{{ tag | first }}{%- endcapture -%}
-  <h2 id="{{ name }}">{{ name | upcase }}</h2>
-  {%- for post in site.tags[name] -%}
-    {%- assign _fname = post.path | split: '/' | last -%}
-    {%- assign _fchar = _fname | slice: 0 -%}
-    {%- unless _fchar == '#' -%}
-    <article class="post-item" id="results-container">
-      <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
-      <h3 class="post-item-title">
-        <a href="{{ post.url }}">{{ post.title | escape }}</a>
-      </h3>
-    </article>
-    {%- endunless -%}
-  {%- endfor -%}
-{%- endfor -%}
+<header class="page-header"><p class="eyebrow">Follow a thread</p><h1>Explore by <span class="accent">topic.</span></h1></header>
+{% assign tags = site.tags | sort %}
+<nav class="tags topic-index" aria-label="Topics">{% for tag in tags %}<a class="tag" href="#{{ tag.first | slugify }}">{{ tag.first | escape }} <span>{{ tag.last.size }}</span></a>{% endfor %}</nav>
+{% for tag in tags %}<section class="topic-section" id="{{ tag.first | slugify }}"><div class="section-heading"><h2>{{ tag.first | escape }}</h2><span class="eyebrow">{{ tag.last.size }} articles</span></div>{% for post in tag.last %}{% include post-card.html post=post %}{% endfor %}</section>{% endfor %}

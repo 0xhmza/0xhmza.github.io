@@ -1,46 +1,17 @@
----
-layout: compress
----
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: " en " }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}" data-theme="dark">
 {% include header.html %}
-
-<body data-theme="{{ site.mode }}" class="notransition">
-
-  <script>
-    const root = document.documentElement;
-    const body = document.body;
-    const data = body.getAttribute("data-theme");
-
-    const initTheme = (state) => {
-      if (state === "dark") {
-        body.setAttribute("data-theme", "dark");
-        root.setAttribute("data-theme", "dark");
-      } else if (state === "light") {
-        body.removeAttribute("data-theme");
-        root.removeAttribute("data-theme");
-      } else {
-        localStorage.setItem("theme", data);
-        if (data === "dark") {
-          root.setAttribute("data-theme", "dark");
-        } else {
-          root.removeAttribute("data-theme");
-        }
-      }
-    };
-
-    initTheme(localStorage.getItem("theme"));
-
-    setTimeout(() => body.classList.remove("notransition"), 75);
-  </script>
-
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
   {% include navbar.html %}
-  <div class="wrapper">
-    {% include author.html %}
-    <main aria-label="Content">
-      {{ content }}
-    </main>
-    {% include footer.html %}
-  </div>
+  <main id="main" class="site-main wrapper" tabindex="-1">{{ content }}</main>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+  {% if content contains 'data-project-title' %}
+  <script src="{{ '/assets/js/project-art.js' | relative_url }}" defer></script>
+  {% endif %}
+  {% if content contains 'language-mermaid' or content contains 'class="mermaid"' %}
+  <script type="module" src="{{ '/assets/js/diagrams.js' | relative_url }}"></script>
+  {% endif %}
 </body>
 </html>

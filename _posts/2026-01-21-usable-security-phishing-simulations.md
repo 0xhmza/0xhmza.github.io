@@ -1,24 +1,11 @@
 ---
 title: "Why Simulated Phishing Campaigns Don’t Make Companies Safer"
 date: 2026-01-31
+tags: [Usable Security, Human Factors]
 description: Human-centred security research (incl. M. Angela Sasse) suggests “gotcha” phishing tests optimize vanity metrics, raise stress, and undermine reporting, without improving real resilience.
-gradient_dark:
-  - "#0b1320"
-  - "#1c2541"
-  - "#3a506b"
-gradient_light:
-  - "#eef3fb"
-  - "#dbe7f7"
-  - "#c5daf3"
 ---
 
-<a href="https://casa.rub.de/en/research/publications/author/m-angela-sasse"
-   style="font-family:'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-          font-weight:200; font-size:0.85rem; color:#8a8f98; text-decoration:none;">
-   <span style="text-decoration:underline; text-underline-offset:2px; text-decoration-color:#c9cdd3;">
-    Reading list: M. Angela Sasse (Human-Centred Security)
-  </span>
-</a>
+[Reading list: M. Angela Sasse (Human-Centred Security)](https://casa.rub.de/en/research/publications/author/m-angela-sasse)
 
 Simulated phishing campaigns (SPCs) are often treated as a *cheap behavioral control*: send fake phish, measure clicks, “train” those who fail.
 Human‑centred security research argues this framing is backwards: **users are not the enemy**. Security outcomes depend on systems, incentives, and trust, not “catching people out”.[^adams1999]
@@ -35,6 +22,8 @@ Click rate is an attractive KPI because it’s simple and trends downward over t
 
 ```mermaid
 flowchart TB
+  accTitle: The feedback loop of simulated phishing
+  accDescr: Clicks can trigger punitive training and discourage reporting; non-clicks can create a false sense of improvement. Both paths can weaken the security response.
   A[Simulated phish sent]
   A --> B{Employee action}
 
@@ -89,6 +78,8 @@ Human‑centred security work emphasizes designing secure routines and removing 
 
 ```mermaid
 sequenceDiagram
+  accTitle: A reporting-first response
+  accDescr: The employee reports suspicious email, the security team triages it, mail security updates detections, and the employee receives feedback.
   participant U as Employee
   participant C as Mail Client
   participant S as SOC / IR

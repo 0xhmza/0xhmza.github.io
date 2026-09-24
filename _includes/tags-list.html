@@ -1,0 +1,1 @@
+{% if include.tags.size > 0 %}<div class="tags">{% for tag in include.tags %}{% if include.project %}<span class="tag">{{ tag | escape }}</span>{% else %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag | escape }}</a>{% endif %}{% endfor %}</div>{% endif %}

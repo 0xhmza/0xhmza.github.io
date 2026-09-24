@@ -1,18 +1,20 @@
 ---
-title: about
+title: A little about me.
+eyebrow: The person behind the notebook
 permalink: /about/
 layout: page
-excerpt: Hamza's personal blog.
-comments: false
+description: Cybersecurity student, system administrator, and a curious human in Bochum, Germany.
 ---
 
-I'm a cybersecurity student at Ruhr University Bochum (RUB), based in Bochum, Germany. Alongside my studies, I work part-time as a **System Administrator**, bridging theory and practice on a daily basis. My interests span infrastructures security, networking, and maldev.
+I'm Hamza, a cybersecurity student at **Ruhr University Bochum (RUB)**. Alongside my studies, I work part-time as a **system administrator**, connecting what I learn in the classroom with the realities of running systems.
 
+My interests span infrastructure security, networking, and malware development. I like understanding the details: how a system fits together, where its assumptions break, and what makes it easier for people to use securely.
 
----
-## Contact & Contributions
+This notebook is a place for practical lessons, ideas I'm working through, and tools I've built along the way.
 
-Feel free to reach out if you have questions, want to collaborate, or just want to say hi :)
+## Find me elsewhere
 
-- LinkedIn: [linkedin.com/in/0xhmza/](https://www.linkedin.com/in/0xhmza/)
-- GitHub: [github.com/0xhmza](https://github.com/0xhmza)
+Questions, corrections, and thoughtful conversations are always welcome.
+
+- [GitHub ↗](https://github.com/0xhmza)
+- [LinkedIn ↗](https://www.linkedin.com/in/0xhmza/)

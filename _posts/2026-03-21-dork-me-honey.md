@@ -1,22 +1,15 @@
 ---
 title: "Dork Honeypots: Catching Attackers at the Recon Stage"
 date: 2026-03-21
+last_modified_at: 2026-09-24
 description: Attackers use Google dorks to find targets. What if we flipped it and built fake websites designed to satisfy dork queries, log every visitor, and turn their own recon technique against them?
-gradient_dark:
-  - "#080c10"
-  - "#0d1117"
-  - "#1e2a3a"
-gradient_light:
-  - "#eef3fb"
-  - "#dbe7f7"
-  - "#c5daf3"
 tags: [Threat Intelligence, Deception, Honeypots, OSINT, Blue Team]
 ---
 
 I had a thought the other day that I think is actually pretty cool, so I'm writing it down before I forget.
 
 
-### The setup
+## The setup
 
 Attackers use Google dorks. You know this. Things like:
 
@@ -33,9 +26,9 @@ We spend a lot of energy hardening our systems so they don't show up in those se
 > **What if we built websites specifically designed to show up in those searches?**
 
 
-### The idea
+## The idea
 
-A dork honeypot is a fake website constructed to satisfy the conditions of a known dork query intentionally indexable, deliberately reachable, and quietly logging everyone who lands on it.
+A dork honeypot is a decoy website constructed to match a known dork query: intentionally indexable, deliberately reachable, and instrumented to record requests. It is a detection hypothesis to test, not a guarantee of traffic or useful intelligence.
 
 The logic is clean:
 
@@ -45,20 +38,33 @@ The logic is clean:
 - They click through
 - **You log them**
 
-If someone reaches your page through a dork-shaped URI, there are really only two realistic explanations: a search engine crawler, or someone actively doing recon. You can filter out crawlers. What's left is your signal.
+A request to that URI is a lead, not an attribution. Search crawlers, benign scanners, researchers, link previews, and accidental visitors can also reach it. Even the exact search query may be unavailable. The useful question is whether a sequence of requests supports a reconnaissance hypothesis.
+
+```mermaid
+flowchart TB
+  accTitle: From a decoy request to an investigated signal
+  accDescr: Requests to isolated decoys are recorded, known crawler traffic is classified, and remaining behavior is reviewed with context before it becomes a detection candidate.
+  A[Isolated decoy page] --> B[Record request metadata]
+  B --> C{Verified crawler?}
+  C -->|Yes| D[Separate baseline traffic]
+  C -->|No or unknown| E[Review behavior and context]
+  E --> F{Corroborating evidence?}
+  F -->|Insufficient| G[Retain as an unconfirmed observation]
+  F -->|Sufficient| H[Investigate a detection candidate]
+```
 
 ---
 
-### Why this works
+## Why this could be useful
 
 The attacker's methodology is their weakness here. Dork queries are precise. They're not searching for anything, they're searching for *specific indicators* of misconfiguration or exposure. That precision means you can construct pages that match exactly those indicators, with no organic reason for a normal user to ever land there.
 
-A page that looks like an exposed `.env` file, a forgotten backup endpoint, or an open directory listing is never going to appear in someone's bookmark bar. If someone navigates to it, they were looking for it.
+A page that resembles an exposed `.env` file, a forgotten backup endpoint, or an open directory listing can attract traffic relevant to that exposure. Use synthetic content only and keep the decoy isolated from real applications and credentials.
 
-That's a meaningful signal.
+That makes it a useful place to collect observations. Their meaning still needs validation.
 
 
-### Taking it further: a dork honeypot generator
+## Taking it further: a dork honeypot generator
 
 The natural extension of this is a tool. Something like:
 
@@ -67,34 +73,37 @@ The natural extension of this is a tool. Something like:
 3. Those pages are deployed to a domain and submitted to major search engines
 4. Every visit is logged with IP, timestamp, referrer, and request headers
 
-The more dorks you feed it, the more surface area you create. Multiple dorks targeting the same fake domain compounds the effect. More indexed pages means better SEO, higher probability of landing in top results, and more traffic from attackers running automated scrapers or manual searches.
+More decoys create more coverage to test, but page count alone does not establish search visibility or detection quality. Track which pages are actually indexed, how much baseline traffic they receive, and how often an observation survives review.
 
 For automated recon scripts (tools that take a dork and dump a list of URLs), your honeypot endpoints are just valid targets. They'll get queued, hit, and logged automatically. No interaction required.
 
 
-### The dashboard concept
+## The dashboard concept
 
 The management side of this doesn't need to be complicated. A minimal interface:
 
 - **Input:** paste a dork
 - **Output:** generated pages with preview of what gets deployed
-- **Logs:** a live feed of hits (IP, timestamp, user-agent, dork that brought them in)
-- **Search engine submission:** one-click sitemap ping to Google Search Console, Bing Webmaster, etc.
+- **Logs:** a feed of request paths, timestamps, source IPs, and user-agents, with the intended decoy query recorded separately from the observed referrer. An intended query is not proof of the visitor's actual search.
+- **Indexing:** submit a sitemap through Search Console or advertise it in `robots.txt`. Google's old sitemap ping endpoint is deprecated; submission does not guarantee indexing.[^sitemap-ping]
+- **Review:** separate verified crawlers, retain confidence and analyst notes, and make uncertainty visible.
 
-Reusing a domain across multiple dork campaigns isn't a bug, it's a feature. A domain with a hundred indexed "misconfigured" pages has a much better chance of appearing in search results than a fresh domain with one page. The fake surface compounds over time.
+Reusing a domain can simplify operations, but ranking and traffic are hypotheses to measure. Begin with a small isolated experiment before increasing the number of pages.
 
 
-### What you do with the data
+## What you do with the data
 
 That's up to you. A few useful directions:
 
-- **Threat intel feed:** IPs hitting your honeypots are actively running recon. Block them, share them, enrich them.
-- **Attribution research:** Patterns in user-agents, timing, and dork selection can fingerprint specific tools or actors.
-- **Early warning:** If an attacker is dorking for your industry's common misconfigurations, that's advance notice of targeting before any real attack surface is hit.
+- **Detection research:** Enrich and correlate observations with other evidence. Avoid automatic blocking or publishing IPs based on one decoy request.
+- **Behavioral analysis:** Patterns in request paths and timing may suggest tooling. User-agents are client-supplied claims, and shared IP addresses are not reliable actor identities.
+- **Early warning:** Repeated probing can help prioritize investigation, but it does not by itself establish that your organization is being targeted.
 - **Deception campaigns:** Fake config files, fake credentials, fake internal documentation. Let them think they found something, and watch what they do with it.
 
 
-### The honest caveats
+## The honest caveats
+
+Crawler classification needs more than a user-agent string. For Google crawlers, use its published IP ranges or verify reverse DNS and then confirm that the forward lookup resolves to the original address.[^verify-crawlers] Treat unknown traffic as unknown, not automatically hostile.
 
 This isn't a silver bullet. Sophisticated attackers use residential proxies or rotating infrastructure, which makes IP-based attribution noisy. Legal considerations around what you do with the data vary by jurisdiction. And building convincing fake content that actually ranks well takes effort, and search engines have gotten good at identifying thin or fake pages.
 
@@ -103,3 +112,8 @@ But as a layer in a broader threat intel or deception strategy? It's underused. 
 ---
 
 That's it. I think someone should build it properly. Maybe I will :/
+
+## References
+
+[^sitemap-ping]: Google Search Central. [Sitemaps ping endpoint is going away](https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping). Sitemaps can be submitted through Search Console or referenced in `robots.txt`.
+[^verify-crawlers]: Google. [Verify requests from Google crawlers and fetchers](https://developers.google.com/crawling/docs/crawlers-fetchers/verify-google-requests). Verification uses published IP ranges or reverse and forward DNS checks.
