@@ -5,7 +5,7 @@ tags: [Usable Security, Human Factors]
 description: Human-centred security research (incl. M. Angela Sasse) suggests “gotcha” phishing tests optimize vanity metrics, raise stress, and undermine reporting, without improving real resilience.
 ---
 
-[Reading list: M. Angela Sasse (Human-Centred Security)](https://casa.rub.de/en/research/publications/author/m-angela-sasse)
+[Reading list: M. Angela Sasse (Human-Centred Security)](https://informatik.rub.de/sasse/)
 
 Simulated phishing campaigns (SPCs) are often treated as a *cheap behavioral control*: send fake phish, measure clicks, “train” those who fail.
 Human‑centred security research argues this framing is backwards: **users are not the enemy**. Security outcomes depend on systems, incentives, and trust, not “catching people out”.[^adams1999]
@@ -110,7 +110,7 @@ Stay safe :)
 [^brunken2023]: Lina Brunken, Annalina Buckmann, Jonas Hielscher, and M. Angela Sasse. “To Do This Properly, You Need More Resources”: The Hidden Costs of Introducing Simulated Phishing Campaigns. *USENIX Security 2023* (PDF). <https://www.usenix.org/system/files/usenixsecurity23-brunken.pdf>  
 [^lain2021]: Daniele Lain, Kari Kostiainen, Srdjan Capkun. “Phishing in Organizations: Findings from a Large-Scale and Long-Term Study.” arXiv:2112.07498 (15-month study; reporting button; embedded training effects). <https://arxiv.org/abs/2112.07498>  
 [^lain2024]: Daniele Lain et al. “Content, Nudges and Incentives: A Study on the Effectiveness and Perception of Embedded Phishing Training.” arXiv:2409.01378 (CCS’24 extended version). <https://arxiv.org/abs/2409.01378>  
-[^sasse2015]: M. Angela Sasse. “Scaring and Bullying People into Security Won’t Work.” *IEEE Security & Privacy* (2015). (Preprint link). <https://www.cs.ucl.ac.uk/fileadmin/sec/publications/Sasse_scare_security_ieee2np2015.pdf>  
+[^sasse2015]: M. Angela Sasse. “Scaring and Bullying People into Security Won’t Work.” *IEEE Security & Privacy* (2015). (Preprint link). <https://discovery.ucl.ac.uk/id/eprint/1495933/>  
 [^sasse_reboot]: M. Angela Sasse, Jonas Hielscher, Jennifer Friedauer, Annalina Buckmann. “Rebooting IT Security Awareness – How Organisations Can Encourage and Sustain Secure Behaviours.” (Open-access PDF via UCL Discovery). <https://discovery.ucl.ac.uk/id/eprint/10173711/>  
 [^bada2015]: Maria Bada, Angela M. Sasse, Jason R. C. Nurse. “Cyber Security Awareness Campaigns: Why do they fail to change behaviour?” (PDF). <https://www.cs.ox.ac.uk/files/7194/csss2015_bada_et_al.pdf>  
 [^adams1999]: Anne Adams and M. Angela Sasse. “Users are not the enemy.” *Communications of the ACM* (1999). (Accessible copy). <https://www.semanticscholar.org/paper/Users-are-not-the-enemy-Adams-Sasse/168488dc2088dc5a48e7c85e7fd487145d161223>  

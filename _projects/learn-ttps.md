@@ -8,7 +8,7 @@ links:
     url: https://github.com/0xhmza/learn-ttps
     icon: github
   - label: Live Demo
-    url: https://0xhmza.github.io/Learn-TTPs
+    url: https://0xhmza.github.io/learn-ttps/
     icon: external
 ---
 

@@ -49,6 +49,7 @@ exclude:
   - docs
   - test.html
   - assets/img/projects
+  - "*.conflict-cloud"
 
 plugins:
   - jekyll-feed
