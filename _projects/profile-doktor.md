@@ -1,6 +1,7 @@
 ---
 title: ProfileDoktor
 date: 2026-01-07
+hue: 195
 description: A PowerShell solution to audit Windows user profiles for roaming-profile–related issues and reduce repetitive administrative work.
 tags: [PowerShell, Windows, Active Directory, Sysadmin]
 links:

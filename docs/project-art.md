@@ -1,12 +1,12 @@
-# Machined landscapes
+# Drifting light
 
-Each card holds a small architectural landscape suspended in darkness. Sharp metallic faces, deliberate gaps, and occasional icy highlights reference systems and precision engineering without badges or literal hardware illustrations.
+Each card sits under two soft pools of coloured light that slowly drift, swell, and cross over each other, with a faint third tone blending between them. The piece is quiet, dark, and abstract, and it fades out before the title so the text stays easy to read.
 
-The project title and creation date seed three overlapping height fields. Their positions, falloff, and amplitudes produce a distinct skyline. A quantized wave introduces terraces, while a restrained grid holds the composition together. The result is an ordered structure rather than arbitrary noise.
+The project title and creation date seed the palette: a primary hue, a counterpoint 110–170° away for contrast, and a near neighbour 35–60° away that softens the join. Yellow-olive hues look muddy at low opacity on the dark surface, so they are shifted into green. The seed also sets where each pool starts, how fast it moves, and where the cycle begins, so neighbouring cards never move in step. The primary hue also tints the card border and arrow on hover.
 
-Isometric projection reveals three faces of each solid. Back-to-front drawing creates depth through actual occlusion; bright top faces and shadowed sides define the material. Sparse illuminated edges give the eye a path through the structure. The composition fades before the text so project descriptions remain easy to read.
+Pure hashing cannot promise that neighbouring projects look different. When two cards come out too similar, set `hue: 0–359` in the project's front matter to pin the primary colour. The rest of the piece stays seeded.
 
-A gentle change of scale on hover and keyboard focus brings each structure forward. Reduced-motion settings retain a still view. SVG paths stay crisp at any size, and the implementation needs no external library or continuous render loop.
+All motion is CSS. The two pools are oversized pseudo-elements that animate only `transform`, so the browser can composite them without repainting. Hover and keyboard focus raise the opacity. Reduced-motion settings stop the drift and keep a still gradient. Without JavaScript, a violet and teal default renders.
 
 ## Implementation
 

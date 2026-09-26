@@ -51,12 +51,12 @@ const routes = ["/", "/archive/", "/projects/", "/about/", "/tags/", "/thanks/",
     // Identity belongs to the project's title/date, not its position or viewport.
     const artwork = () => page.locator(".project-card").evaluateAll(cards => cards.map(card => ({
       title: card.dataset.projectTitle, seed: card.dataset.artSeed,
-      geometry: [...card.querySelectorAll(".project-art path")].map(path => path.getAttribute("d"))
+      palette: ["--art-a", "--art-b", "--art-c", "--art-ax", "--art-bx"].map(name => card.style.getPropertyValue(name))
     })));
     const originals = await artwork();
     assert.equal(new Set(originals.map(card => card.seed)).size, 3);
-    assert.equal(new Set(originals.map(card => JSON.stringify(card.geometry))).size, 3);
-    assert(originals.every(card => card.geometry.length > 40));
+    assert.equal(new Set(originals.map(card => JSON.stringify(card.palette))).size, 3);
+    assert(originals.every(card => card.palette.every(Boolean)));
     await page.reload();
     assert.deepEqual(await artwork(), originals, "Reload preserves artwork");
     await page.goto(base + "/projects/");
@@ -77,15 +77,15 @@ const routes = ["/", "/archive/", "/projects/", "/about/", "/tags/", "/thanks/",
         card.dataset.testArt = "true";
         card.dataset.projectTitle = title;
         card.dataset.projectCreated = date;
-        card.querySelector(".project-art").replaceChildren();
+        card.removeAttribute("style");
         document.querySelector(".projects-grid").prepend(card);
       }
     });
     await page.addScriptTag({ path: path.resolve("assets/js/project-art.js") });
     const variants = (await artwork()).slice(0, 4).reverse();
-    assert.deepEqual(variants[0], originals[0], "Order cannot affect seed or geometry");
+    assert.deepEqual(variants[0], originals[0], "Order cannot affect seed or palette");
     assert.equal(new Set(variants.map(card => card.seed)).size, 4, "Both title and creation date affect the hash");
-    assert.equal(new Set(variants.map(card => JSON.stringify(card.geometry))).size, 4);
+    assert.equal(new Set(variants.map(card => JSON.stringify(card.palette))).size, 4);
     let expectedHash = 0x811c9dc5;
     for (const byte of Buffer.from("Café <&> 安全\0" + "2025-01-01")) expectedHash = Math.imul(expectedHash ^ byte, 0x01000193);
     assert.equal(variants[3].seed, (expectedHash >>> 0).toString(16).padStart(8, "0"), "UTF-8 hash contract");
@@ -94,11 +94,12 @@ const routes = ["/", "/archive/", "/projects/", "/about/", "/tags/", "/thanks/",
     const firstCard = page.locator(".project-card").first();
     await firstCard.locator("a").focus();
     await page.waitForTimeout(1300);
-    assert.equal(await firstCard.locator("svg").evaluate(node => getComputedStyle(node).opacity), "1", "Keyboard focus reveals artwork");
+    assert.equal(await firstCard.locator(".project-art").evaluate(node => getComputedStyle(node).opacity), "1", "Keyboard focus reveals artwork");
     await page.emulateMedia({ reducedMotion: "reduce" });
-    const stillTransform = await firstCard.locator("svg").evaluate(node => getComputedStyle(node).transform);
+    const stillDrift = () => firstCard.locator(".project-art").evaluate(node => getComputedStyle(node, "::before").animationName);
+    assert.equal(await stillDrift(), "none", "Reduced motion stops the gradient");
     await firstCard.hover();
-    assert.equal(await firstCard.locator("svg").evaluate(node => getComputedStyle(node).transform), stillTransform);
+    assert.equal(await stillDrift(), "none");
     assert.equal(await firstCard.evaluate(node => getComputedStyle(node).transform), "none");
     await firstCard.click({ position: { x: 15, y: 90 } });
     await page.waitForURL(base + "/projects/bin2shell/");

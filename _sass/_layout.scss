@@ -26,19 +26,26 @@
 .post-card:hover h3, .post-card:hover .post-card-arrow { color: var(--accent); }
 .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .project-card { isolation: isolate; position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 0; padding: 1.6rem; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
-.project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.project-card:hover { border-color: var(--art-accent, var(--accent)); transform: translateY(-3px); }
 .project-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9.5rem; }
 .project-index, .project-year { font: 1rem var(--mono); color: var(--muted); }
-.project-art { position: absolute; z-index: -1; inset: 0 0 auto; height: 225px; overflow: hidden; pointer-events: none; background: radial-gradient(ellipse at 70% 30%, #26303d66, transparent 70%); mask-image: linear-gradient(#000 72%, transparent 100%); }
-.project-art svg { display: block; width: 100%; height: 100%; opacity: .85; transform: scale(1.02); transition: transform 1.2s cubic-bezier(.2,.7,.2,1), opacity .8s; }
-.project-card:focus-within .project-art svg { transform: scale(1.08) translateY(-3px); opacity: 1; }
+.project-art { position: absolute; z-index: -1; inset: 0 0 auto; height: 225px; overflow: hidden; pointer-events: none; opacity: .85; transition: opacity .8s; background: radial-gradient(ellipse at var(--art-cx, 50%) var(--art-cy, 45%), var(--art-c, transparent), transparent 60%); mask-image: linear-gradient(#000 60%, transparent 100%); }
+/* Two oversized light pools drift independently; transforms keep the motion on the compositor. */
+.project-art::before, .project-art::after { content: ""; position: absolute; inset: -40%; will-change: transform; }
+.project-art::before { background: radial-gradient(ellipse 38% 34% at var(--art-ax, 39%) var(--art-ay, 33%), var(--art-a, #7b5cff26), transparent 70%); animation: art-drift-a var(--art-ta, 17s) ease-in-out var(--art-delay, 0s) infinite alternate; }
+.project-art::after { background: radial-gradient(ellipse 42% 34% at var(--art-bx, 64%) var(--art-by, 47%), var(--art-b, #22d3c526), transparent 70%); animation: art-drift-b var(--art-tb, 22s) ease-in-out var(--art-delay, 0s) infinite alternate; }
+.project-card:focus-within .project-art { opacity: 1; }
+@keyframes art-drift-a { 50% { transform: translate(12%, 8%) scale(1.15); } 100% { transform: translate(20%, -4%) scale(.95); } }
+@keyframes art-drift-b { 50% { transform: translate(-14%, -8%) scale(1.12); } 100% { transform: translate(-6%, 9%) scale(1.2); } }
 @media (hover: hover) {
-  .project-card:hover .project-art svg { transform: scale(1.08) translateY(-3px); opacity: 1; }
+  .project-card:hover .project-art { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .project-card:hover { transform: none; }
-  .project-card:focus-within .project-art svg, .project-card:hover .project-art svg { transform: scale(1.02); }
+  .project-art::before, .project-art::after { animation: none; }
 }
+.project-card-bottom > span:last-child { transition: color .2s; }
+.project-card:hover .project-card-bottom > span:last-child { color: var(--art-accent, var(--accent)); }
 .project-card h3 { margin-bottom: .8rem; }
 .project-card h3 a { text-decoration: none; }
 .project-card > p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }

@@ -28,7 +28,7 @@ In PowerShell, set `$env:JEKYLL_ENV = "production"` before the build command.
 - `_includes/`: reusable cards, reading time, table of contents, and diagram figures.
 - `_sass/`: tokens, base rules, layouts, article content, and syntax colors.
 - `assets/js/main.js`: local archive filtering, contents, code copying, and table scrolling.
-- `assets/js/project-art.js`: deterministic metallic landscapes, seeded from project titles and creation dates. See `docs/project-art.md`.
+- `assets/js/project-art.js`: deterministic drifting gradient backgrounds, seeded from project titles and creation dates. See `docs/project-art.md`.
 - `assets/js/diagrams.js`: lazy, serialized Mermaid rendering and an accessible native dialog.
 - `docs/diagrams.md`: diagram authoring and review conventions.
 - `test.html`: preserved infrastructure-reference prototype, excluded from production output. Its companion post remains unpublished.
