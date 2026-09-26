@@ -1,5 +1,5 @@
 title: 0xHMZA
-description: Security, systems, and the people in between.
+description: Technical articles and projects in cybersecurity and system administration.
 lang: en-US
 timezone: Europe/Berlin
 url: "https://0xhmza.github.io"
@@ -49,6 +49,9 @@ exclude:
   - docs
   - test.html
   - assets/img/projects
+  - _projects/bin2shell-diagram-1.html
+  - assets/search.json
+  - sitemap.xml
   - "*.conflict-cloud"
 
 plugins:

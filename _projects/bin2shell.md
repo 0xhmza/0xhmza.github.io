@@ -2,7 +2,7 @@
 title: Bin2shell
 date: 2026-06-13
 hue: 262
-description: A flat binary to C++ code reconstructor, powered by templates and playbooks.
+description: Reconstruct flat binaries as C++ code using templates and modular playbooks.
 tags: [Malware Development]
 links:
   - label: Repository

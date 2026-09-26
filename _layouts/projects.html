@@ -1,5 +1,5 @@
 ---
 layout: default
 ---
-<header class="page-header"><p class="eyebrow">Experiments & useful things</p><h1>From idea<br>to <span class="accent">implementation.</span></h1><p class="page-deck">Small tools, practical experiments, and things built to scratch an itch.</p></header>
-<section class="projects-grid" aria-label="Projects">{% assign projects = site.projects | sort: 'date' | reverse %}{% for project in projects %}{% include project-card.html project=project index=forloop.index %}{% endfor %}</section>
+<header class="page-header"><h1>Projects</h1></header>
+<section class="projects-grid" aria-label="Projects">{% assign projects = site.projects | sort: 'date' | reverse %}{% for project in projects %}{% include project-card.html project=project %}{% endfor %}</section>

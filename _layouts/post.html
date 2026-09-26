@@ -3,10 +3,10 @@ layout: default
 ---
 <article class="article">
   <header class="article-header">
-    <a class="back-link" href="{{ '/archive/' | relative_url }}">← All writing</a>
-    {% include tags-list.html tags=page.tags %}
+    <a class="back-link" href="{{ '/archive/' | relative_url }}">← All articles</a>
     <h1>{{ page.title | escape }}</h1>
     <p class="article-deck">{{ page.description | escape }}</p>
+    {% include tags-list.html tags=page.tags %}
     {% assign updated = page.last_modified_at | default: page.modified %}
     <div class="article-meta"><span>{{ site.author.name }}</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d %B %Y' }}</time><span>{% include reading-time.html content=content %}</span>{% if updated %}<span>Updated {{ updated | date: '%d %b %Y' }}</span>{% endif %}</div>
   </header>

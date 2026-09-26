@@ -1,7 +1,7 @@
 ---
 title: Learn TTPs
 date: 2026-03-09
-description: An Anki-style spaced repetition flashcard web app for mastering the MITRE ATT&CK framework (techniques, tactics, and mitigations) entirely in a static website.
+description: Spaced-repetition flashcards for MITRE ATT&CK techniques, tactics, and mitigations.
 tags: [Web App, MITRE ATT&CK]
 links:
   - label: Repository

@@ -2,9 +2,14 @@
 title: Topics
 permalink: /tags/
 layout: default
-description: Explore the notebook by topic.
+description: Cybersecurity and system administration articles organized by topic.
 ---
-<header class="page-header"><p class="eyebrow">Follow a thread</p><h1>Explore by <span class="accent">topic.</span></h1></header>
+<header class="page-header page-header-row"><h1>Topics</h1><a class="text-link" href="{{ '/archive/' | relative_url }}">All articles <span aria-hidden="true">→</span></a></header>
 {% assign tags = site.tags | sort %}
 <nav class="tags topic-index" aria-label="Topics">{% for tag in tags %}<a class="tag" href="#{{ tag.first | slugify }}">{{ tag.first | escape }} <span>{{ tag.last.size }}</span></a>{% endfor %}</nav>
-{% for tag in tags %}<section class="topic-section" id="{{ tag.first | slugify }}"><div class="section-heading"><h2>{{ tag.first | escape }}</h2><span class="eyebrow">{{ tag.last.size }} articles</span></div>{% for post in tag.last %}{% include post-card.html post=post %}{% endfor %}</section>{% endfor %}
+{% for tag in tags %}
+<section class="topic-section" id="{{ tag.first | slugify }}" aria-labelledby="topic-{{ tag.first | slugify }}">
+  <div class="section-heading"><h2 id="topic-{{ tag.first | slugify }}">{{ tag.first | escape }}</h2><span class="topic-count">{{ tag.last.size }} article{% if tag.last.size != 1 %}s{% endif %}</span></div>
+  <ul class="topic-posts">{% for post in tag.last %}<li><a href="{{ post.url | relative_url }}"><strong>{{ post.title | escape }}</strong><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %b %Y' }}</time></a></li>{% endfor %}</ul>
+</section>
+{% endfor %}

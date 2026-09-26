@@ -14,9 +14,7 @@ img, svg { max-width: 100%; }
 img { height: auto; }
 h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
 h1, h2, h3, p { margin-top: 0; }
-h1 { font-weight: 600; letter-spacing: normal; }
-h2 { font-weight: 600; letter-spacing: normal; }
-h3 { font-weight: 600; letter-spacing: normal; }
+h1, h2, h3 { font-weight: 600; letter-spacing: normal; }
 button { border: 1px solid var(--border); background: var(--surface); border-radius: 0; }
 .wrapper { width: min(1120px, calc(100% - 96px)); margin-inline: auto; }
 .accent { color: var(--accent); }
@@ -33,6 +31,6 @@ button { border: 1px solid var(--border); background: var(--surface); border-rad
   html { scroll-padding-top: 6rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  html { font-size: 100%; scroll-behavior: auto; }
+  html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }

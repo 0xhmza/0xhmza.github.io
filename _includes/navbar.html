@@ -7,7 +7,8 @@
       {% if page.url == menu.url %}{% assign active = true %}{% endif %}
       {% if page.collection == 'projects' and menu.url == '/projects/' %}{% assign active = true %}{% endif %}
       {% if page.collection == 'posts' and menu.url == '/archive/' %}{% assign active = true %}{% endif %}
-      <a href="{{ menu.url | relative_url }}"{% if active %} aria-current="page"{% endif %}>{{ menu.title }}</a>
+      {% if page.url == '/tags/' and menu.url == '/archive/' %}{% assign active = true %}{% endif %}
+      <a href="{{ menu.url | relative_url }}"{% if active %} aria-current="{% if page.url == menu.url %}page{% else %}location{% endif %}"{% endif %}>{{ menu.title }}</a>
       {% endfor %}
     </div>
   </nav>

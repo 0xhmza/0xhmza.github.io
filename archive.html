@@ -1,10 +1,10 @@
 ---
-title: Writing
+title: Articles
 permalink: /archive/
 layout: default
-description: Notes, ideas, and lessons from cybersecurity and system administration.
+description: Articles on cybersecurity and system administration.
 ---
-<header class="page-header"><p class="eyebrow">The archive / {{ site.posts.size }} articles</p><h1>Ideas worth<br><span class="accent">writing down.</span></h1><p class="page-deck">Security, systems, and the people in between.</p></header>
+<header class="page-header page-header-row"><h1>Articles</h1><a class="text-link" href="{{ '/tags/' | relative_url }}">Topics <span aria-hidden="true">→</span></a></header>
 <div class="archive-tools" hidden>
   <label for="search-input">Find an article</label>
   <input type="search" id="search-input" placeholder="Search titles, topics, or descriptions…" autocomplete="off">
@@ -12,4 +12,3 @@ description: Notes, ideas, and lessons from cybersecurity and system administrat
 </div>
 <section class="post-list" aria-label="Articles">{% for post in site.posts %}{% include post-card.html post=post search=true %}{% endfor %}</section>
 <p class="empty-state" id="search-empty" hidden>No matching articles. Try another topic or clear your search.</p>
-<p class="archive-topics">Browse by <a href="{{ '/tags/' | relative_url }}">topic ↗</a></p>

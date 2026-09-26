@@ -1,7 +1,7 @@
 <article class="project-card" data-project-title="{{ include.project.title | escape }}" data-project-created="{{ include.project.date | date: '%Y-%m-%d' }}"{% if include.project.hue %} data-project-hue="{{ include.project.hue }}"{% endif %}>
   <div class="project-art" aria-hidden="true"></div>
-  <div class="project-card-top"><span class="project-index">P / {{ include.index | prepend: '0' | slice: -2, 2 }}</span><span class="project-year">{{ include.project.date | date: '%Y' }}</span></div>
+  <div class="project-card-top"><time datetime="{{ include.project.date | date_to_xmlschema }}">{{ include.project.date | date: '%b %Y' }}</time></div>
   <h3><a href="{{ include.project.url | relative_url }}">{{ include.project.title | escape }}</a></h3>
   <p>{{ include.project.description | escape }}</p>
-  <div class="project-card-bottom"><span>{{ include.project.tags.first | escape }}</span><span aria-hidden="true">↗</span></div>
+  <div class="project-card-bottom"><span class="tag">{{ include.project.tags.first | escape }}</span><span aria-hidden="true">↗</span></div>
 </article>

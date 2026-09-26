@@ -1,5 +1,5 @@
 ---
 layout: default
 ---
-<header class="page-header"><p class="eyebrow">{{ page.eyebrow | default: 'The notebook' }}</p><h1>{{ page.title | escape }}</h1>{% if page.description %}<p class="page-deck">{{ page.description | escape }}</p>{% endif %}</header>
+<header class="page-header"><h1>{{ page.title | escape }}</h1>{% if page.description %}<p class="page-deck">{{ page.description | escape }}</p>{% endif %}</header>
 <div class="prose page-prose">{{ content }}</div>

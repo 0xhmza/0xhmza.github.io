@@ -1,14 +1,14 @@
-.article-header { max-width: 900px; padding-block: 4rem 3.5rem; }
-.back-link { display: inline-block; margin-bottom: 2.5rem; text-decoration: none; color: var(--muted); }
+.article-header { max-width: 900px; padding-block: 2.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; text-decoration: none; color: var(--muted); }
 .article-header .tags { margin-bottom: 1.5rem; }
-.article-header h1 { line-height: 1.5; margin-bottom: 1.5rem; }
-.article-deck { color: var(--muted); max-width: 780px; line-height: 1.75; }
+.article-header h1 { line-height: 1.6; margin-bottom: .75rem; }
+.article-deck { color: var(--muted); max-width: 780px; line-height: 1.75; margin-bottom: 1.25rem; }
 .article-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; color: var(--muted); font: 1rem/1.7 var(--mono); }
 .project-links { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem; }
 .reading-layout { display: grid; grid-template-columns: 210px minmax(0, 760px); gap: clamp(2rem, 5vw, 5rem); border-top: 1px solid var(--border); padding-top: 3rem; align-items: start; }
 .article-body { grid-column: 2; min-width: 0; }
 .article-sidebar { position: sticky; top: 7rem; max-height: calc(100vh - 9rem); overflow: auto; scrollbar-width: thin; }
-.toc summary { font: 1rem var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1.4rem; }
+.toc summary { font: 1rem var(--mono); color: var(--muted); font-weight: 600; margin-bottom: 1rem; }
 .toc ol { list-style: none; padding: 0; margin: 0; }
 .toc li { margin-bottom: .65rem; }
 .toc a { display: block; line-height: 1.6; color: var(--muted); text-decoration: none; border-left: 1px solid var(--border); padding: .2rem 0 .2rem 1rem; }
@@ -69,7 +69,6 @@ body:has(.diagram-dialog[open]) { overflow: hidden; }
 }
 @media (max-width: 700px) {
   .article-header { padding-block: 2.5rem; }
-  .back-link { margin-bottom: 2rem; }
   .reading-layout { display: block; padding-top: 1.5rem; }
   .article-sidebar { position: static; max-height: none; margin-bottom: 2rem; }
   .toc { border-bottom: 1px solid var(--border); padding-bottom: 1.25rem; }
